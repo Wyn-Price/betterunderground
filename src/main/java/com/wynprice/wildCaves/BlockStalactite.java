@@ -191,10 +191,20 @@ public class BlockStalactite extends Block {
 	{
 		if(state != getStateFromMeta(0))
 		{
+			int up = -1;
+			for(int i = 0; i < WorldGenWildCaves.maxLength; i++)
+			{
+				up = world.getBlockState(new BlockPos(pos.getX(), pos.getY() - i , pos.getZ())).getBlock() == (Block) this ? pos.getY() + i : up;
+			}
+			if(world.getBlockState(new BlockPos(pos.getX(), up + 1, pos.getZ())).getBlock() == Blocks.AIR)
+			{
+				destroyUpwards(world, pos, state, up - pos.getY());
+				return;
+			}
 			int down = -1;
 			for(int i = 0; i < WorldGenWildCaves.maxLength; i++)
 			{
-				down = world.getBlockState(new BlockPos(pos.getX(), pos.getY() - i , pos.getZ())).getBlock() == (Block) this ? pos.getY() - i : down;
+				down = world.getBlockState(pos.add(0, i, 0)).getBlock() == (Block) this ? i + pos.getY() : down;
 			}
 			if(world.getBlockState(new BlockPos(pos.getX(), down - 1, pos.getZ())).getBlock() == Blocks.AIR)
 			{
@@ -260,7 +270,6 @@ public class BlockStalactite extends Block {
 		double z = pos.getZ();;
 		for(int i = 0; i < distance; i++)
 		{
-			System.out.println(i);
 			pos = new BlockPos(x, y + i, z);
 			if(i >= maxLength)
 			{
@@ -282,6 +291,25 @@ public class BlockStalactite extends Block {
 				world.setBlockState(pos, getStateFromMeta(Utils.randomChoise(4,5)), 2);		
 
 		}
+	}
+	
+	private void destroyUpwards(World world, BlockPos pos, IBlockState state,  int distance)
+	{
+		for(int i = 0; i <= distance; i ++)
+		{
+			BlockPos position = new BlockPos(pos.getX(), pos.getY() + i, pos.getZ());
+			this.dropBlockAsItem(world, position, getDefaultState(), 0);
+			world.setBlockToAir(position);
+			BlockPos posDown = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
+			IBlockState upState;
+			if(world.getBlockState(posDown).getBlock() != (Block)this)
+				upState = world.getBlockState(posDown);
+			else if(!Arrays.asList(getStateFromMeta(8)).contains(world.getBlockState(posDown)))
+				upState = getStateFromMeta(12);
+			else
+				upState = getStateFromMeta(Utils.randomChoise(1,2));
+			world.setBlockState(posDown, upState);
+		}			
 	}
 	
 	private void destroyDownwards(World world, BlockPos pos, IBlockState state,  int distance)
