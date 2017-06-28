@@ -47,6 +47,7 @@ public class BlockStalactite extends Block {
 		return getMetaFromState(state) < 4;
 	}
 
+
 	@Override
 	protected BlockStateContainer createBlockState(){
 		if(ALL_TYPE == null) {
@@ -128,18 +129,27 @@ public class BlockStalactite extends Block {
 
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
-		this.updateTick(world, pos, state, null);
 		double x = pos.getX();
 		double y = pos.getY();
 		double z = pos.getZ();
 		Boolean hitOtherBlock = false;
 		double finalY = 0d;
 		int times = -1;
+		if(!this.canBlockStay(world, pos, state))
+		{
+			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+			EntityPlayer p = (EntityPlayer)par5EntityLivingBase;
+			par6ItemStack.setCount(par6ItemStack.getCount() + 1);
+			p.inventory.setInventorySlotContents(p.inventory.currentItem, par6ItemStack);
+			return;
+		}
+		if(world.getBlockState(pos.add(0, 1, 0)).getBlock() == (Block)this && world.getBlockState(pos.add(0, -1, 0)).getBlock() == (Block)this)
+			world.setBlockState(pos, state);
 		if(world.isAirBlock(new BlockPos(x, y-1, z)) || world.getBlockState(new BlockPos(x, y+1, z)).getBlock() == this)
 		{
 			for(int i = (int) y; !hitOtherBlock; i++)
 			{
-				if(world.getBlockState(new BlockPos(x, i ,z)).getBlock() != this)
+				if(world.getBlockState(new BlockPos(x, i ,z)).getBlock() !=  (Block)this)
 				{
 					hitOtherBlock = true;
 					finalY = i - 1;
@@ -147,8 +157,64 @@ public class BlockStalactite extends Block {
 				times++;
 			}
 			BlockPos startup = new BlockPos(x, finalY, z);
-			GenerateDown(world, new Random(), startup, times, WorldGenWildCaves.maxLength);
+			GenerateDown(world, new Random(), startup, times, WorldGenWildCaves.maxLength, par5EntityLivingBase, par6ItemStack);
 		}
+	}
+	
+	@Override
+	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) 
+	{
+		if(state == getStateFromMeta(4) || state == getStateFromMeta(5))
+		{
+			int down = -1;
+			for(int i = 0; i < WorldGenWildCaves.maxLength; i++)
+			{
+				down = world.getBlockState(new BlockPos(pos.getX(), pos.getY() - i , pos.getZ())).getBlock() == (Block) this ? pos.getY() - i : down;
+			}
+			if(world.getBlockState(new BlockPos(pos.getX(), down - 1, pos.getZ())).getBlock() == Blocks.AIR)
+			{
+				destroyDownwards(world, pos, state, pos.getY() - down);
+				return;
+			}
+			if(world.getBlockState(new BlockPos(pos.getX(), down, pos.getZ())) != getStateFromMeta(8))
+				world.setBlockState(new BlockPos(pos.getX(), down, pos.getZ()), getStateFromMeta(8));
+			if(world.getBlockState(new BlockPos(pos.getX(), down - 1, pos.getZ())).getBlock() != (Block)this && pos.getY() - down == 1)
+			{
+				world.setBlockState(new BlockPos(pos.getX(), down, pos.getZ()), getStateFromMeta(Utils.randomChoise(9,10)), 2);
+				return;
+			}
+			IBlockState upState = world.getBlockState(pos.add(0, 1, 0)).getBlock() != (Block)this? world.getBlockState(pos.add(0, 1, 0)) : getStateFromMeta(7);  
+			IBlockState downState = world.getBlockState(pos.add(0, -1, 0)).getBlock() != (Block)this? world.getBlockState(pos.add(0, -1, 0)) : getStateFromMeta(6);  
+			destroyUpdate(world, pos, upState, downState);
+		}
+	}
+	
+	private void destroyDownwards(World world, BlockPos pos, IBlockState state,  int distance)
+	{
+		for(int i = 0; i <= distance; i ++)
+		{
+			BlockPos position = new BlockPos(pos.getX(), pos.getY() - i, pos.getZ());
+			this.dropBlockAsItem(world, position, getDefaultState(), 0);
+			world.setBlockToAir(position);
+			BlockPos posUp = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+			if(world.getBlockState(posUp.add(0, 1, 0)).getBlock() == (Block)this)
+				world.setBlockState(posUp, getStateFromMeta(Utils.randomChoise(7,11)), 2);
+			else world.setBlockState(posUp, getStateFromMeta(Utils.randomChoise(1,2)), 2);
+		}
+			
+	}
+	
+	private void destroyUpdate(World world, BlockPos pos, int stateUp, int stateDown)
+	{
+			destroyUpdate(world, pos, getStateFromMeta(stateUp), getStateFromMeta(stateDown));
+	}
+	
+	private void destroyUpdate(World world, BlockPos pos, IBlockState stateUp, IBlockState stateDown)
+	{
+		BlockPos posUp = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+		BlockPos posDown = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
+		world.setBlockState(posUp, stateUp, 2);
+		world.setBlockState(posDown, stateDown, 2);
 	}
 
     @Override
@@ -238,7 +304,7 @@ public class BlockStalactite extends Block {
 		return true;
 	}
 	
-	private void GenerateDown(World world, Random random, BlockPos pos, int distance, int maxLength)
+	private void GenerateDown(World world, Random random, BlockPos pos, int distance, int maxLength, EntityLivingBase player, ItemStack itemStack)
 	{
 		double x = pos.getX();
 		double y = pos.getY();
@@ -248,13 +314,22 @@ public class BlockStalactite extends Block {
 		{
 			pos = new BlockPos(x, y - i, z);
 			if(i == maxLength)
-				world.setBlockState(pos, getStateFromMeta(0), 2);
-				world.setBlockToAir(pos);
-			if(i==0)
+			{
+				world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+				pos = new BlockPos(x, y - i + 1, z);
+				world.setBlockState(pos, getStateFromMeta(Arrays.asList(Blocks.AIR, (Block)this).contains(world.getBlockState(new BlockPos(x, y - i - 1, z)).getBlock())? Utils.randomChoise(7,11) : 8), 2);
+				EntityPlayer p = (EntityPlayer)player;
+				itemStack.setCount(itemStack.getCount() + 1);
+				p.inventory.setInventorySlotContents(p.inventory.currentItem, itemStack);
+				return;
+			}
+			if(distance == 1)
+				world.setBlockState(pos, getStateFromMeta(Utils.randomChoise(1,2)), 2);
+			else if(i==0)
 				world.setBlockState(pos, getStateFromMeta(3), 2);
 			else if(i==distance - 1)
-				world.setBlockState(pos, getStateFromMeta(Arrays.asList(Blocks.AIR, (Block)this).contains(world.getBlockState(new BlockPos(x, y - i - 1, z)).getBlock())? 7 : 8), 2);	
-			else if(i==distance - 2 && world.getBlockState(new BlockPos(x, y - i - 1, z)).getBlock() == (Block) this && !Arrays.asList(4,5).contains(getMetaFromState(world.getBlockState(pos))))
+				world.setBlockState(pos, getStateFromMeta(Arrays.asList(Blocks.AIR, (Block)this).contains(world.getBlockState(new BlockPos(x, y - i - 1, z)).getBlock())? Utils.randomChoise(7,11) : 8), 2);	
+			else if(i==distance - 2 && !Arrays.asList(getStateFromMeta(5), getStateFromMeta(4)).contains(world.getBlockState(pos)))
 				world.setBlockState(pos, getStateFromMeta(Utils.randomChoise(4,5)), 2);		
 		}
 	}
