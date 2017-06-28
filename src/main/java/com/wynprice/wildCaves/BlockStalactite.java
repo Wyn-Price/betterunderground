@@ -143,8 +143,19 @@ public class BlockStalactite extends Block {
 			p.inventory.setInventorySlotContents(p.inventory.currentItem, par6ItemStack);
 			return;
 		}
-//		if(world.getBlockState(pos.add(0, 1, 0)).getBlock() == (Block)this && world.getBlockState(pos.add(0, -1, 0)).getBlock() == (Block)this)
-//			world.setBlockState(pos, state);
+		if(world.getBlockState(pos.add(0, 1, 0)).getBlock() == (Block)this && world.getBlockState(pos.add(0, -1, 0)).getBlock() == (Block)this)
+			{
+				world.setBlockState(pos, getStateFromMeta(Utils.randomChoise(4,5)), 2);	
+				if(Arrays.asList(getStateFromMeta(6), getStateFromMeta(7)).contains((world.getBlockState(pos.add(0, 1, 0)))))
+					world.setBlockState(pos.add(0, 1, 0), getStateFromMeta(Utils.randomChoise(4,5)), 2);
+				if(Arrays.asList(getStateFromMeta(6), getStateFromMeta(7)).contains((world.getBlockState(pos.add(0, -1, 0)))))
+					world.setBlockState(pos.add(0, -1, 0), getStateFromMeta(Utils.randomChoise(4,5)), 2);
+				if(Arrays.asList(getStateFromMeta(1), getStateFromMeta(2)).contains((world.getBlockState(pos.add(0, 1, 0)))))
+					world.setBlockState(pos.add(0, 1, 0), getStateFromMeta(3), 2);
+				if(Arrays.asList(getStateFromMeta(9), getStateFromMeta(10)).contains((world.getBlockState(pos.add(0, -1, 0)))))
+					world.setBlockState(pos.add(0, -1, 0), getStateFromMeta(8), 2);
+				return;
+			}
 		if(world.isAirBlock(new BlockPos(x, y-1, z)) || world.getBlockState(new BlockPos(x, y+1, z)).getBlock() == this)
 		{
 			for(int i = (int) y; !hitOtherBlock; i++)
@@ -216,7 +227,7 @@ public class BlockStalactite extends Block {
 		double x = pos.getX();
 		double y = pos.getY();
 		double z = pos.getZ();
-		
+	
 		for(int i = 0; i < distance; i++)
 		{
 			pos = new BlockPos(x, y - i, z);
@@ -243,11 +254,13 @@ public class BlockStalactite extends Block {
 	
 	private void GenerateUp(World world, Random random, BlockPos pos , int distance, int maxLength, EntityLivingBase player, ItemStack itemStack)
 	{
+		
 		double x = pos.getX();
 		double y = pos.getY();
-		double z = pos.getZ();
+		double z = pos.getZ();;
 		for(int i = 0; i < distance; i++)
 		{
+			System.out.println(i);
 			pos = new BlockPos(x, y + i, z);
 			if(i >= maxLength)
 			{
@@ -264,10 +277,9 @@ public class BlockStalactite extends Block {
 			else if(i==0)
 				world.setBlockState(pos, getStateFromMeta(8), 2);
 			else if(i==distance - 1)
-				world.setBlockState(pos, getStateFromMeta(Arrays.asList(Blocks.AIR, (Block)this).contains(world.getBlockState(pos.add(0, 1, 0)).getBlock())? Utils.randomChoise(6,12) : 3), 2);	
+				world.setBlockState(pos, getStateFromMeta(Arrays.asList(Blocks.AIR).contains(world.getBlockState(pos.add(0, 1, 0)).getBlock())? Utils.randomChoise(6,12) : 3), 2);	
 			else if(i==distance - 2 && !Arrays.asList(getStateFromMeta(5), getStateFromMeta(4)).contains(world.getBlockState(pos)))
 				world.setBlockState(pos, getStateFromMeta(Utils.randomChoise(4,5)), 2);		
-
 
 		}
 	}
