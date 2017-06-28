@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -242,26 +243,19 @@ public class BlockStalactite extends Block {
 		double x = pos.getX();
 		double y = pos.getY();
 		double z = pos.getZ();
-		if(distance == 1)
-		{
-			if(world.isAirBlock(new BlockPos(x, y -1 , z)))
-				world.setBlockState(pos, this.getStateFromMeta(Utils.randomChoise(1,2)), 2);
-			return;
-		}
+		
 		for(int i = 0; i < distance; i++)
 		{
+			pos = new BlockPos(x, y - i, z);
+			if(i == maxLength)
+				world.setBlockState(pos, getStateFromMeta(0), 2);
+				world.setBlockToAir(pos);
 			if(i==0)
 				world.setBlockState(pos, getStateFromMeta(3), 2);
 			else if(i==distance - 1)
-			{
-				pos = new BlockPos(x, y - i, z);
-				world.setBlockState(pos, getStateFromMeta(7), 2);
-			}
-			else if(i==distance - 2)
-			{
-				pos = new BlockPos(x, y - i, z);
-				world.setBlockState(pos, getStateFromMeta(Utils.randomChoise(4,5)), 2);
-			}		
+				world.setBlockState(pos, getStateFromMeta(Arrays.asList(Blocks.AIR, (Block)this).contains(world.getBlockState(new BlockPos(x, y - i - 1, z)).getBlock())? 7 : 8), 2);	
+			else if(i==distance - 2 && world.getBlockState(new BlockPos(x, y - i - 1, z)).getBlock() == (Block) this && !Arrays.asList(4,5).contains(getMetaFromState(world.getBlockState(pos))))
+				world.setBlockState(pos, getStateFromMeta(Utils.randomChoise(4,5)), 2);		
 		}
 	}
 }

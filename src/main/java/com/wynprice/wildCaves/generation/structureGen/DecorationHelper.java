@@ -53,9 +53,6 @@ public final class DecorationHelper {
                 glowcapNum = random.nextInt(5);
             else
                 glowcapNum = random.nextInt(4);
-            System.out.println(world);
-            System.out.println(glowcapNum);
-            System.out.println(WildCaves.blockFlora);
             world.setBlockState(pos, WildCaves.blockFlora.getStateFromMeta(glowcapNum), 2);
             if (glowcapNum == 4) {
                 world.setBlockState(pos.up(), WildCaves.blockFlora.getStateFromMeta(glowcapNum + 1), 2);

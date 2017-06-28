@@ -157,12 +157,12 @@ public final class WorldGenWildCaves {
         probabilityDry = (float) config.get(category, "Probability of less generation arid caves", 0.5).getDouble(0.5);
         probabilityGlowcapsHumid = (float) config.get(category, "Probability of Glowing mushrooms on humid/jungle caves", 0.3).getDouble(0.3);
         probabilityIceshrooms = (float) config.get(category, "Probability of Glowing Ice mushrooms on frozen caves", 0.3).getDouble(0.3);
-        probabilitySandStalactites = (float) config.get(category, "Probability of sandstone stalactites on arid caves", 0.5).getDouble(0.5);
+        probabilitySandStalactites = (float) config.get(category, "Probability of sandstone stalactites on arid caves", 4).getDouble(4);
         // --General ratios------
         category = "Non biome specific";
-        probabilityVines = (float) config.get(category, "Probability of vines on caves", 0.1).getDouble(0.1);
+        probabilityVines = (float) config.get(category, "Probability of vines on caves", 0.4).getDouble(0.4);
         probabilityGlowcaps = (float) config.get(category, "Probability of glowing mushrooms on caves", 0.1).getDouble(0.1);
-        probabilityStalactite = (float) config.get(category, "Probability of Stalactites/stalagmites", 0.5).getDouble(0.5);
+        probabilityStalactite = (float) config.get(category, "Probability of Stalactites/stalagmites",4).getDouble(4);
         probabilitySpiderWeb = (float) config.get(category, "Probability of spider webs", 0.15).getDouble(0.15);
         maxGenHeightGlowcapNormal = config.get(category, "Max height at which to generate glowcaps on normal biomes", 30).getInt();
         probabilitySkulls = (float) config.get(category, "Probability of skulls", 0.0001).getDouble(0.0001);

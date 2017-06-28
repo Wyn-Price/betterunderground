@@ -35,7 +35,7 @@ import java.util.Arrays;
 
 @Mod(modid = "wildcaves3", name = "Wild Caves 3", version = "${version}")
 public final class WildCaves {
-    @SidedProxy(clientSide = "wildCaves.ClientProxy", serverSide = "wildCaves.ServerProxy")
+    @SidedProxy(clientSide = "com.wynprice.wildCaves.ClientProxy", serverSide = "com.wynprice.wildCaves.ServerProxy")
     public static ServerProxy proxy;
 
     public static final ArrayList<String> stalacs = new ArrayList<String>(Arrays.asList("stalactite1", "stalactite2", "stalactite3", "stalactite4", "stalactiteConnection1", "stalactiteConnection2", "stalactiteConnection3",
