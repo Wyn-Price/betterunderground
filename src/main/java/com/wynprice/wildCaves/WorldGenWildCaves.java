@@ -39,7 +39,7 @@ public final class WorldGenWildCaves {
 	public static float probabilitySkulls;
 	public static int maxGenHeight;
 	public static int maxLength;
-	private static int timesPerChunck = 50;
+	private static int timesPerChunck = 55;
 	public static int maxGenHeightGlowcapNormal;
 	public static List<Integer> dimensionBlacklist = new ArrayList<Integer>();
 	private static List<Block> blockWhiteList = new ArrayList<Block>();
@@ -69,7 +69,7 @@ public final class WorldGenWildCaves {
             Biome biome;
 			for (int i = 0; i < timesPerChunck; i++) {
                 coord = pos.add(random.nextInt(16), 0, random.nextInt(16));
-                coord = new BlockPos(pos.getX(), Math.min(world.getHeight(coord).getY()-1, random.nextInt(maxGenHeight)), pos.getZ());
+                coord = new BlockPos(coord.getX(), Math.min(world.getHeight(coord).getY()-1, random.nextInt(maxGenHeight)), coord.getZ());
 				// search for the first available spot
 				while (coord.getY() > 10 && (!blockWhiteList.contains(world.getBlockState(coord.up()).getBlock()) || !world.isAirBlock(coord))) {
 					coord = coord.down();

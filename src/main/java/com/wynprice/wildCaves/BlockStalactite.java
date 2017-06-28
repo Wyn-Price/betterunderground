@@ -303,11 +303,6 @@ public class BlockStalactite extends Block {
 		}			
 	}
 	
-	private void destroyUpdate(World world, BlockPos pos, int stateUp, int stateDown)
-	{
-			destroyUpdate(world, pos, getStateFromMeta(stateUp), getStateFromMeta(stateDown));
-	}
-	
 	private void destroyUpdate(World world, BlockPos pos, IBlockState stateUp, IBlockState stateDown)
 	{
 		BlockPos posUp = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());

@@ -30,7 +30,7 @@ public class GenerateStoneStalactite {
 		if (distance <= 1) {
 			//x,y,z,blockID, metadata, no update
             if (!world.isAirBlock(pos.up())) {
-			    world.setBlockState(pos, blockId.getDefaultState(), 2);
+			    world.setBlockState(pos, blockId.getStateFromMeta(3), 2);
             }
 		} else {
 			int j = 0; // blocks placed
