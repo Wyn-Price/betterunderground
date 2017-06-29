@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -33,7 +35,9 @@ import net.minecraftforge.registries.ForgeRegistry;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Mod(modid = "wildcaves3", name = "Wild Caves 4", version = "1.0.0")
+import javax.swing.text.html.parser.Entity;
+
+@Mod(modid = "wildcaves4", name = "Wild Caves 4", version = "1.0.0")
 public final class WildCaves {
     @SidedProxy(clientSide = "com.wynprice.wildCaves.ClientProxy", serverSide = "com.wynprice.wildCaves.ServerProxy")
     public static ServerProxy proxy;
@@ -73,7 +77,7 @@ public final class WildCaves {
         damageWhenFallenOn = config.getBoolean("Stalgmites damage entities when fallen on", Configuration.CATEGORY_GENERAL, false, "Whether living beings would be damaged when falling on the block.");
         int floraLightLevel = config.getInt("Flora light level", Configuration.CATEGORY_GENERAL, 5, 0, 15, "How much light is emitted by the mushrooms.");
 
-        wildTab = new CreativeTabs("WildCaves3") {
+        wildTab = new CreativeTabs("WildCaves4") {
             @Override
             public ItemStack getTabIconItem() {
                 return new ItemStack(Items.ENDER_EYE);
