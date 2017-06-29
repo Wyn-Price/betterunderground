@@ -46,6 +46,7 @@ public class BlockFlora extends BlockBush implements IShearable {
 	public int getNumOfStructures(){
 		return WildCaves.caps.size();
 	}
+	
 
 	@Override
 	protected BlockStateContainer createBlockState()

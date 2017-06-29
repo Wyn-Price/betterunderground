@@ -9,9 +9,10 @@ import java.util.ArrayList;
 public class MultiItemBlock extends ItemBlock {
 	private final ArrayList<String> subNames;
 
-	public MultiItemBlock(Block block, ArrayList<String> names) {
+
+	public MultiItemBlock(Block block, ArrayList<String> arrayList) {
 		super(block);
-		this.subNames = names;
+		this.subNames = arrayList;
 		setHasSubtypes(true);
 	}
 
@@ -26,4 +27,5 @@ public class MultiItemBlock extends ItemBlock {
 	public String getUnlocalizedName(ItemStack itemstack) {
 		return subNames.get(itemstack.getMetadata());
 	}
+	
 }

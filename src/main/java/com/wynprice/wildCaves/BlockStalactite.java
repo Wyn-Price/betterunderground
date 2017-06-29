@@ -1,17 +1,28 @@
 package com.wynprice.wildCaves;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.NonNullList;
@@ -21,12 +32,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import com.wynprice.wildCaves.generation.structureGen.GenerateStoneStalactite;
 
 public class BlockStalactite extends Block {
     private final Item droppedItem;
@@ -70,6 +75,11 @@ public class BlockStalactite extends Block {
     public Item getItemDropped(IBlockState metadata, Random random, int par3) {
         return droppedItem;
     }
+    
+    @Override
+    protected ItemStack getSilkTouchDrop(IBlockState state) {
+    	return new ItemStack(this, 1, 0);
+    }
 
     @Override
     public int quantityDropped(Random rand) {
@@ -87,11 +97,30 @@ public class BlockStalactite extends Block {
 			result = connected(world, pos, true) || connected(world, pos, false);
 		return result;
 	}
-
+	
+	
 	@Override
-	protected boolean canSilkHarvest() {
-		return true;
-	}
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
+    {
+        player.addStat(StatList.getBlockStats(this));
+        player.addExhaustion(0.005F);
+    	System.out.println("s");
+
+        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) > 0)
+        {
+        	ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+        	list.add(new ItemStack(this, 1, 0));
+            net.minecraftforge.event.ForgeEventFactory.fireBlockHarvesting(list, worldIn, pos, state, 0, 1.0f, true, player);
+            spawnAsEntity(worldIn, pos, new ItemStack(this, 1, 0));
+        }
+        else
+        {
+            harvesters.set(player);
+            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack);
+            this.dropBlockAsItem(worldIn, pos, state, i);
+            harvesters.set(null);
+        }
+    }
 
 	//aux funtion for canblockStay
 	public boolean connected(World world, BlockPos pos, boolean searchUp) {
@@ -189,14 +218,27 @@ public class BlockStalactite extends Block {
 	@Override
 	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) 
 	{
+		harvestBlock(world, player, pos, state, null, player.inventory.getCurrentItem());
 		if(state != getStateFromMeta(0))
 		{
+			if(Arrays.asList(getStateFromMeta(3)).contains((world.getBlockState(pos.add(0, 1, 0)))))
+				world.setBlockState(pos.add(0, 1, 0), getStateFromMeta(Utils.randomChoise(1,2)), 2);
+			if(Arrays.asList(getStateFromMeta(5), getStateFromMeta(4)).contains((world.getBlockState(pos.add(0, 1, 0)))) && world.getBlockState(pos.add(0, 2, 0)).getBlock() == (Block)this)
+				world.setBlockState(pos.add(0, 1, 0), getStateFromMeta(7), 2);
+			if(Arrays.asList(getStateFromMeta(8)).contains((world.getBlockState(pos.add(0, -1, 0)))))
+				world.setBlockState(pos.add(0, -1, 0), getStateFromMeta(Utils.randomChoise(9,10)), 2);
+			if(Arrays.asList(getStateFromMeta(5), getStateFromMeta(4)).contains((world.getBlockState(pos.add(0, -1, 0)))) && world.getBlockState(pos.add(0, -2, 0)).getBlock() == (Block)this)
+				world.setBlockState(pos.add(0, -1, 0), getStateFromMeta(Utils.randomChoise(6,12)), 2);
 			int up = -1;
 			for(int i = 0; i < WorldGenWildCaves.maxLength; i++)
 			{
-				up = world.getBlockState(new BlockPos(pos.getX(), pos.getY() - i , pos.getZ())).getBlock() == (Block) this ? pos.getY() + i : up;
+				if(world.getBlockState(pos.add(0, i, 0)).getBlock() != (Block) this)
+				{
+					up = pos.getY() + i;
+					break;
+				}
 			}
-			if(world.getBlockState(new BlockPos(pos.getX(), up + 1, pos.getZ())).getBlock() == Blocks.AIR)
+			if(world.getBlockState(new BlockPos(pos.getX(), up, pos.getZ())).getBlock() == Blocks.AIR)
 			{
 				destroyUpwards(world, pos, state, up - pos.getY());
 				return;
@@ -204,31 +246,35 @@ public class BlockStalactite extends Block {
 			int down = -1;
 			for(int i = 0; i < WorldGenWildCaves.maxLength; i++)
 			{
-				down = world.getBlockState(pos.add(0, i, 0)).getBlock() == (Block) this ? i + pos.getY() : down;
+				if(world.getBlockState(pos.add(0, -i, 0)).getBlock() != (Block) this)
+				{
+					down = pos.getY() -  i;
+					break;
+				}
 			}
-			if(world.getBlockState(new BlockPos(pos.getX(), down - 1, pos.getZ())).getBlock() == Blocks.AIR)
+			if(world.getBlockState(new BlockPos(pos.getX(), down, pos.getZ())).getBlock() == Blocks.AIR)
 			{
 				destroyDownwards(world, pos, state, pos.getY() - down);
 				return;
 			}
-			if(world.getBlockState(new BlockPos(pos.getX(), down, pos.getZ())) != getStateFromMeta(8))
-				world.setBlockState(new BlockPos(pos.getX(), down, pos.getZ()), getStateFromMeta(8));
-			if(world.getBlockState(new BlockPos(pos.getX(), down - 1, pos.getZ())).getBlock() != (Block)this && pos.getY() - down == 1)
-			{
-				world.setBlockState(new BlockPos(pos.getX(), down, pos.getZ()), getStateFromMeta(Utils.randomChoise(9,10)), 2);
-				if(world.getBlockState(pos.add(0, 1, 0)).getBlock() == (Block)this)
-					world.setBlockState(pos.add(0, 1, 0), getStateFromMeta(7));
-				return;
-			}
-			IBlockState upState;
-			if(world.getBlockState(pos.add(0, 1, 0)).getBlock() != (Block)this)
-				upState = world.getBlockState(pos.add(0, 1, 0));
-			else if(world.getBlockState(pos.add(0, 1, 0)) != getStateFromMeta(3))
-				upState = getStateFromMeta(7);
-			else
-				upState = getStateFromMeta(Utils.randomChoise(1,2));
-			IBlockState downState = world.getBlockState(pos.add(0, -1, 0)).getBlock() != (Block)this ? world.getBlockState(pos.add(0, -1, 0)) : getStateFromMeta(6);  
-			destroyUpdate(world, pos, upState, downState);
+//			if(world.getBlockState(new BlockPos(pos.getX(), down, pos.getZ())) != getStateFromMeta(8))
+//				world.setBlockState(new BlockPos(pos.getX(), down, pos.getZ()), getStateFromMeta(8));
+//			if(world.getBlockState(new BlockPos(pos.getX(), down - 1, pos.getZ())).getBlock() != (Block)this && pos.getY() - down == 1)
+//			{
+//				world.setBlockState(new BlockPos(pos.getX(), down, pos.getZ()), getStateFromMeta(Utils.randomChoise(9,10)), 2);
+//				if(world.getBlockState(pos.add(0, 1, 0)).getBlock() == (Block)this)
+//					world.setBlockState(pos.add(0, 1, 0), getStateFromMeta(7));
+//				return;
+//			}
+//			IBlockState upState;
+//			if(world.getBlockState(pos.add(0, 1, 0)).getBlock() != (Block)this)
+//				upState = world.getBlockState(pos.add(0, 1, 0));
+//			else if(world.getBlockState(pos.add(0, 1, 0)) != getStateFromMeta(3))
+//				upState = getStateFromMeta(7);
+//			else
+//				upState = getStateFromMeta(Utils.randomChoise(1,2));
+//			IBlockState downState = world.getBlockState(pos.add(0, -1, 0)).getBlock() != (Block)this ? world.getBlockState(pos.add(0, -1, 0)) : getStateFromMeta(6); 		
+//			destroyUpdate(world, pos, upState, downState);
 		}
 	}
 	
@@ -275,7 +321,7 @@ public class BlockStalactite extends Block {
 			{
 				world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 				pos = pos.add(0, -1, 0);
-				world.setBlockState(pos, getStateFromMeta(Arrays.asList(Blocks.AIR, (Block)this).contains(world.getBlockState(new BlockPos(x, y - i - 1, z)).getBlock())? Utils.randomChoise(6,12) : 8), 2);
+				world.setBlockState(pos, getStateFromMeta(Arrays.asList(Blocks.AIR, (Block)this).contains(world.getBlockState(new BlockPos(x, y + i + 1, z)).getBlock())? Utils.randomChoise(6,12) : 3), 2);
 				EntityPlayer p = (EntityPlayer)player;
 				itemStack.setCount(itemStack.getCount() + 1);
 				p.inventory.setInventorySlotContents(p.inventory.currentItem, itemStack);
@@ -293,6 +339,7 @@ public class BlockStalactite extends Block {
 		}
 	}
 	
+	
 	private void destroyUpwards(World world, BlockPos pos, IBlockState state,  int distance)
 	{
 		for(int i = 0; i <= distance; i ++)
@@ -300,15 +347,19 @@ public class BlockStalactite extends Block {
 			BlockPos position = new BlockPos(pos.getX(), pos.getY() + i, pos.getZ());
 			this.dropBlockAsItem(world, position, getDefaultState(), 0);
 			world.setBlockToAir(position);
-			BlockPos posDown = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
-			IBlockState upState;
-			if(world.getBlockState(posDown).getBlock() != (Block)this)
-				upState = world.getBlockState(posDown);
-			else if(!Arrays.asList(getStateFromMeta(8)).contains(world.getBlockState(posDown)))
-				upState = getStateFromMeta(12);
-			else
-				upState = getStateFromMeta(Utils.randomChoise(1,2));
-			world.setBlockState(posDown, upState);
+//			BlockPos posDown = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
+//			IBlockState upState = null;
+//			if(world.getBlockState(posDown).getBlock() != (Block)this)
+//				upState = world.getBlockState(posDown);
+//			else if(getStateFromMeta(8) != world.getBlockState(posDown))
+//			{
+//				upState = getStateFromMeta(12);
+//
+//			}
+//			else
+//				upState = getStateFromMeta(Utils.randomChoise(1,2));
+//			System.out.println(world.getBlockState(posDown));
+//			world.setBlockState(posDown, upState);
 		}			
 	}
 	
@@ -319,15 +370,15 @@ public class BlockStalactite extends Block {
 			BlockPos position = new BlockPos(pos.getX(), pos.getY() - i, pos.getZ());
 			this.dropBlockAsItem(world, position, getDefaultState(), 0);
 			world.setBlockToAir(position);
-			BlockPos posUp = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
-			IBlockState upState;
-			if(world.getBlockState(posUp).getBlock() != (Block)this)
-				upState = world.getBlockState(posUp);
-			else if(!Arrays.asList(getStateFromMeta(1), getStateFromMeta(2), getStateFromMeta(3)).contains(world.getBlockState(posUp)))
-				upState = getStateFromMeta(7);
-			else
-				upState = getStateFromMeta(Utils.randomChoise(1,2));
-			world.setBlockState(posUp, upState);
+//			BlockPos posUp = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+//			IBlockState upState;
+//			if(world.getBlockState(posUp).getBlock() != (Block)this)
+//				upState = world.getBlockState(posUp);
+//			else if(!Arrays.asList(getStateFromMeta(1), getStateFromMeta(2), getStateFromMeta(3)).contains(world.getBlockState(posUp)))
+//				upState = getStateFromMeta(7);
+//			else
+//				upState = getStateFromMeta(Utils.randomChoise(1,2));
+//			world.setBlockState(posUp, upState);
 		}			
 	}
 	
@@ -339,13 +390,6 @@ public class BlockStalactite extends Block {
 		world.setBlockState(posDown, stateDown, 2);
 	}
 
-    @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random random) {
-        if (!this.canBlockStay(world, pos, state)){
-            this.dropBlockAsItem(world, pos, state, 0);
-            world.setBlockToAir(pos);
-        }
-    }
     
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity) {

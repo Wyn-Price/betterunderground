@@ -1,13 +1,9 @@
 package com.wynprice.wildCaves;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -44,16 +40,46 @@ public class ModBlocks
 	private static void regBlock(Block block, int StackSize)
 	{
 		ForgeRegistries.BLOCKS.register(block);
-		ItemBlock item = new ItemBlock(block);
+		ArrayList<String> classEs = new ArrayList<String>(Arrays.asList(block.getClass().getName().split("\\.")));
+		MultiItemBlock item = null;
+		switch (classEs.get(classEs.size() - 1)) {
+		case "BlockFlora":
+			item = new MultiItemBlock(block, getn("flora_", WildCaves.caps.size()));
+			break;
+		case "BlockDecorations":
+			item = new MultiItemBlock(block, getn("icicle_", WildCaves.icicles.size()));
+			break;
+		case "BlockFossils":
+			item = new MultiItemBlock(block, getn("fossil_", WildCaves.fossils.size()));
+			break;
+		case "BlockStoneStalactite":
+			item = new MultiItemBlock(block, getn("stone_", WildCaves.stalacs.size()));
+			break;
+		case "BlockStalactite":
+			item = new MultiItemBlock(block, getn("sandstone_", WildCaves.sandStalacs.size()));
+			break;
+		}
+		//ItemBlock item = new ItemBlock(block);
 		item.setRegistryName(block.getRegistryName());
 		item.setMaxStackSize(StackSize);
 		ForgeRegistries.ITEMS.register(item);
 	}
 	
+	private static ArrayList<String> getn(String preName, int size)
+	{
+		ArrayList<String> names = new ArrayList<String>();
+		for (int i = 0; i < size; i ++)
+			names.add(preName + i);
+		return names;
+	}
+	
 	public static void invtab()
 	{
 		for(Block b : Arrays.asList(f,d,F,SS,SaS))
+		{
 			b.setCreativeTab(WildCaves.wildTab);
+		}
+			
 	}
 
 }

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -22,7 +21,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.ModContainer;
 
 public class ClientProxy extends ServerProxy{
-    private static final String PREFIX = "wildcaves3";
+    private static final String PREFIX = "wildCaves3";
     @Override
     public void registerModelBakery() {
     	mb(WildCaves.blockStoneStalactite, WildCaves.stalacs, "stone_");
@@ -39,6 +38,7 @@ public class ClientProxy extends ServerProxy{
     	Item item = Item.getItemFromBlock(block);
         for(int i = 0; i < size.size(); i++)
         	ArrayNames.add(new ResourceLocation(PREFIX, Suffix + i)); 
+        	
         ResourceLocation[] names = new ResourceLocation[ArrayNames.size()];
         names = ArrayNames.toArray(names);
     	ModelBakery.registerItemVariants(Item.getItemFromBlock(WildCaves.blockStoneStalactite), names);

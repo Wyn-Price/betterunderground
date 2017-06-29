@@ -38,7 +38,7 @@ public class GenerateStoneStalactite {
 			BlockPos botY = pos.down(distance - 1);
 			int aux;
 			//stalactite base
-			if (!world.isAirBlock(topY.up())) {
+			if (!world.isAirBlock(topY.up()) && world.isAirBlock(topY.add(0, -1, 0))) {
                 generateStalactiteBase(world, random, topY);
 				j++;
 			}

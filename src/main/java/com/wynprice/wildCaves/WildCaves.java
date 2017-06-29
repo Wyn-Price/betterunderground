@@ -33,7 +33,7 @@ import net.minecraftforge.registries.ForgeRegistry;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Mod(modid = "wildcaves3", name = "Wild Caves 3", version = "${version}")
+@Mod(modid = "wildcaves3", name = "Wild Caves 4", version = "1.0.0")
 public final class WildCaves {
     @SidedProxy(clientSide = "com.wynprice.wildCaves.ClientProxy", serverSide = "com.wynprice.wildCaves.ServerProxy")
     public static ServerProxy proxy;
