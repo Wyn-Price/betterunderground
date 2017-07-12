@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures":{
-    "cross": "cavetweaks:blocks/flora6"
+    "cross": "betterunderground:blocks/flora6"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "block/tinted_cross",
   "textures":{
-    "cross": "cavetweaks:blocks/flora2"
+    "cross": "betterunderground:blocks/flora2"
   }
 }

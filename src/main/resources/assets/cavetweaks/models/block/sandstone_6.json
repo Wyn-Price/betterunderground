@@ -1,6 +1,6 @@
 {
   "parent":"block/cross",
   "textures": {
-    "cross": "cavetweaks:blocks/sandstoneStructure6"
+    "cross": "betterunderground:blocks/sandstoneStructure6"
   }
 }

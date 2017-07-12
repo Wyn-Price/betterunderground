@@ -1,17 +1,17 @@
 {
   "variants": {
-    "type=0": { "model": "cavetweaks:sandstone_0" },
-    "type=1": { "model": "cavetweaks:sandstone_1" },
-    "type=2": { "model": "cavetweaks:sandstone_2" },
-    "type=3": { "model": "cavetweaks:sandstone_3" },
-    "type=4": { "model": "cavetweaks:sandstone_4" },
-    "type=5": { "model": "cavetweaks:sandstone_5" },
-    "type=6": { "model": "cavetweaks:sandstone_6" },
-    "type=7": { "model": "cavetweaks:sandstone_7" },
-    "type=8": { "model": "cavetweaks:sandstone_8" },
-    "type=9": { "model": "cavetweaks:sandstone_9" },
-    "type=10": { "model": "cavetweaks:sandstone_10" },
-    "type=11": { "model": "cavetweaks:sandstone_11" },
-    "type=12": { "model": "cavetweaks:sandstone_12" }
+    "type=0": { "model": "betterunderground:sandstone_0" },
+    "type=1": { "model": "betterunderground:sandstone_1" },
+    "type=2": { "model": "betterunderground:sandstone_2" },
+    "type=3": { "model": "betterunderground:sandstone_3" },
+    "type=4": { "model": "betterunderground:sandstone_4" },
+    "type=5": { "model": "betterunderground:sandstone_5" },
+    "type=6": { "model": "betterunderground:sandstone_6" },
+    "type=7": { "model": "betterunderground:sandstone_7" },
+    "type=8": { "model": "betterunderground:sandstone_8" },
+    "type=9": { "model": "betterunderground:sandstone_9" },
+    "type=10": { "model": "betterunderground:sandstone_10" },
+    "type=11": { "model": "betterunderground:sandstone_11" },
+    "type=12": { "model": "betterunderground:sandstone_12" }
   }
 }

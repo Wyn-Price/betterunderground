@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cavetweaks:blocks/stonestructure12"
+    "layer0": "betterunderground:blocks/stonestructure12"
   }
 }

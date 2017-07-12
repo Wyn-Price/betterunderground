@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cavetweaks:blocks/flora2"
+    "layer0": "betterunderground:blocks/flora2"
   }
   
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cavetweaks:blocks/sandstonestructure9"
+    "layer0": "betterunderground:blocks/sandstonestructure9"
   }
 }
