@@ -37,7 +37,7 @@ import java.util.Arrays;
 
 import javax.swing.text.html.parser.Entity;
 
-@Mod(modid = "wildcaves4", name = "Wild Caves 4", version = "1.0.0")
+@Mod(modid = "cavetweaks", name = "Cave Tweaks", version = "1.0.0")
 public final class WildCaves {
     @SidedProxy(clientSide = "com.wynprice.wildCaves.ClientProxy", serverSide = "com.wynprice.wildCaves.ServerProxy")
     public static ServerProxy proxy;

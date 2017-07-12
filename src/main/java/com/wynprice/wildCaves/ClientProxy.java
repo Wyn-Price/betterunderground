@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.ModContainer;
 
 public class ClientProxy extends ServerProxy{
-    private static final String PREFIX = "wildcaves4";
+    private static final String PREFIX = "cavetweaks";
     @Override
     public void registerModelBakery() {
     	mb(WildCaves.blockStoneStalactite, WildCaves.stalacs, "stone_");

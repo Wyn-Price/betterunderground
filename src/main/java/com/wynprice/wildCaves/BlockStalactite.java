@@ -138,7 +138,7 @@ public class BlockStalactite extends Block {
 
 	@Override
 	public int damageDropped(IBlockState state) {
-		return getMetaFromState(state);
+		return 0;
 	}
 
 	@SideOnly(Side.CLIENT)
