@@ -1,4 +1,4 @@
-package com.wynprice.wildCaves;
+package com.wynprice.betterunderground;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
@@ -23,7 +23,7 @@ public class ItemStalactite extends MultiItemBlock {
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
 			EnumFacing facing, float hitX, float hitY, float hitZ) {
-		return itemUse(new ItemStack(WildCaves.blockStoneStalactite), player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+		return itemUse(new ItemStack(BetterUnderground.blockStoneStalactite), player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 
 	public EnumActionResult itemUse(ItemStack itemStack, EntityPlayer par2EntityPlayer, World world, BlockPos pos, EnumHand hand, EnumFacing side, float par8, float par9, float par10) {
@@ -65,6 +65,6 @@ public class ItemStalactite extends MultiItemBlock {
 	}
 
 	private boolean isStalactite(IBlockState state){
-		return state.getBlock() == WildCaves.blockStoneStalactite || state.getBlock() == WildCaves.blockSandStalactite;
+		return state.getBlock() == BetterUnderground.blockStoneStalactite || state.getBlock() == BetterUnderground.blockSandStalactite;
 	}
 }

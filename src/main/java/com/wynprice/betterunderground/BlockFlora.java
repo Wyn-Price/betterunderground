@@ -1,4 +1,4 @@
-package com.wynprice.wildCaves;
+package com.wynprice.betterunderground;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -44,7 +44,7 @@ public class BlockFlora extends BlockBush implements IShearable {
 	}
 
 	public int getNumOfStructures(){
-		return WildCaves.caps.size();
+		return BetterUnderground.caps.size();
 	}
 	
 

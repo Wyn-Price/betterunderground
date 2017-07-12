@@ -1,4 +1,4 @@
-package com.wynprice.wildCaves;
+package com.wynprice.betterunderground;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -37,9 +37,9 @@ import java.util.Arrays;
 
 import javax.swing.text.html.parser.Entity;
 
-@Mod(modid = "betterunderground", name = "Cave Tweaks", version = "1.0.0")
-public final class WildCaves {
-    @SidedProxy(clientSide = "com.wynprice.wildCaves.ClientProxy", serverSide = "com.wynprice.wildCaves.ServerProxy")
+@Mod(modid = "betterunderground", name = "Better Underground", version = "1.0.0")
+public final class BetterUnderground {
+    @SidedProxy(clientSide = "com.wynprice.betterunderground.ClientProxy", serverSide = "com.wynprice.betterunderground.ServerProxy")
     public static ServerProxy proxy;
 
     public static final ArrayList<String> stalacs = new ArrayList<String>(Arrays.asList("stalactite1", "stalactite2", "stalactite3", "stalactite4", "stalactiteConnection1", "stalactiteConnection2", "stalactiteConnection3",
@@ -59,14 +59,14 @@ public final class WildCaves {
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		proxy.init();
-		WorldGenWildCaves gen = new WorldGenWildCaves(config);
+		WorldGenBetterUnderGround gen = new WorldGenBetterUnderGround(config);
 		if (gen.maxLength > 0)
             MinecraftForge.EVENT_BUS.register(gen);
         if(chestSkull > 0)
             MinecraftForge.EVENT_BUS.register(this);
 	}
 	
-	public static CreativeTabs wildTab;
+	public static CreativeTabs tab;
 	
     @EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -77,10 +77,10 @@ public final class WildCaves {
         damageWhenFallenOn = config.getBoolean("Stalgmites damage entities when fallen on", Configuration.CATEGORY_GENERAL, false, "Whether living beings would be damaged when falling on the block.");
         int floraLightLevel = config.getInt("Flora light level", Configuration.CATEGORY_GENERAL, 5, 0, 15, "How much light is emitted by the mushrooms.");
 
-        wildTab = new CreativeTabs("WildCaves4") {
+        tab = new CreativeTabs("betterunderground") {
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Items.ENDER_EYE);
+                return new ItemStack(ModBlocks.SS, 1, 0);
             }
         };
         /*

@@ -1,4 +1,4 @@
-package com.wynprice.wildCaves;
+package com.wynprice.betterunderground;
 
 public class ServerProxy {
 

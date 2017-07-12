@@ -1,4 +1,4 @@
-package com.wynprice.wildCaves.generation.structureGen;
+package com.wynprice.betterunderground.generation.structureGen;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -6,12 +6,12 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import com.wynprice.wildCaves.Utils;
-import com.wynprice.wildCaves.WildCaves;
+import com.wynprice.betterunderground.BetterUnderground;
+import com.wynprice.betterunderground.Utils;
 
 public final class GenerateSandstoneStalactites extends GenerateStoneStalactite{
     public GenerateSandstoneStalactites(){
-        super(WildCaves.blockSandStalactite);
+        super(BetterUnderground.blockSandStalactite);
     }
 
     @Override

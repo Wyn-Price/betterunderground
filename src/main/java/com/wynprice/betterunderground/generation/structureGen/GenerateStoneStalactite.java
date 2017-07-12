@@ -1,4 +1,4 @@
-package com.wynprice.wildCaves.generation.structureGen;
+package com.wynprice.betterunderground.generation.structureGen;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -7,14 +7,14 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import com.wynprice.wildCaves.Utils;
-import com.wynprice.wildCaves.WildCaves;
-import com.wynprice.wildCaves.WorldGenWildCaves;
+import com.wynprice.betterunderground.BetterUnderground;
+import com.wynprice.betterunderground.Utils;
+import com.wynprice.betterunderground.WorldGenBetterUnderGround;
 
 public class GenerateStoneStalactite {
     public Block blockId;
     public GenerateStoneStalactite(){
-    	init(WildCaves.blockStoneStalactite);
+    	init(BetterUnderground.blockStoneStalactite);
     	}
     public GenerateStoneStalactite(Block toGen){
     	init(toGen);
@@ -43,7 +43,7 @@ public class GenerateStoneStalactite {
 				j++;
 			}
 			// stalagmite base
-			if (!world.getBlockState(botY).getMaterial().isLiquid() && WorldGenWildCaves.isWhiteListed(world.getBlockState(botY.down()).getBlock())) {
+			if (!world.getBlockState(botY).getMaterial().isLiquid() && WorldGenBetterUnderGround.isWhiteListed(world.getBlockState(botY.down()).getBlock())) {
 				aux = Utils.randomChoise(-1, 8, 9, 10);
 				if (aux != -1) {
                     generateStalagmiteBase(world, random, botY, aux);

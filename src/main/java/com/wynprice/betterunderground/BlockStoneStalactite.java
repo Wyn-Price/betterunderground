@@ -1,4 +1,4 @@
-package com.wynprice.wildCaves;
+package com.wynprice.betterunderground;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -20,7 +20,7 @@ public class BlockStoneStalactite extends BlockStalactite {
 
 	@Override
 	public int getNumOfStructures(){
-		return WildCaves.stalacs.size();
+		return BetterUnderground.stalacs.size();
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.wynprice.wildCaves;
+package com.wynprice.betterunderground;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -37,7 +37,7 @@ public class BlockDecorations extends Block {
 	}
 
 	public int getNumOfStructures(){
-		return WildCaves.icicles.size();
+		return BetterUnderground.icicles.size();
 	}
 
 	@Override

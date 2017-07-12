@@ -1,19 +1,16 @@
 [
 {
   "modid": "betterunderground",
-  "name": "Wild Caves 4",
-  "description": "This mod gives some much needed love to vanilla caves, adds stalactites, stalagmites, vines, glowing mushrooms, icicles and there's more to come.",
+  "name": "Better Underground",
+  "description": "",
   "mcversion": 1.12,
-  "version" : 1.0.0-1.12,
-  "url": "http://www.minecraftforum.net/topic/1554854-146forge-wildcaves-3-v032/",
+  "version" : 1.0.0,
+  "url": "",
   "updateUrl": "",
   "authorList": [
-    "Alexmania",
-	"Wyn Price"
-  ],
-  "logoFile": "WildCaves3.png",
-  "screenshots": [
-  ],
+	"Wyn Price"],
+  "logoFile": "",
+  "screenshots": [],
   "parent":"",
   "dependencies": [
 	"MinecraftForge"

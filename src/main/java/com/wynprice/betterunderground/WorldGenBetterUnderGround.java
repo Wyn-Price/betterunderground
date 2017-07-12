@@ -1,14 +1,14 @@
-package com.wynprice.wildCaves;
+package com.wynprice.betterunderground;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.wynprice.wildCaves.generation.biomeGen.GenerationArid;
-import com.wynprice.wildCaves.generation.biomeGen.GenerationFrozen;
-import com.wynprice.wildCaves.generation.biomeGen.GenerationHumid;
-import com.wynprice.wildCaves.generation.biomeGen.GenerationJungle;
-import com.wynprice.wildCaves.generation.biomeGen.GenerationNormal;
+import com.wynprice.betterunderground.generation.biomeGen.GenerationArid;
+import com.wynprice.betterunderground.generation.biomeGen.GenerationFrozen;
+import com.wynprice.betterunderground.generation.biomeGen.GenerationHumid;
+import com.wynprice.betterunderground.generation.biomeGen.GenerationJungle;
+import com.wynprice.betterunderground.generation.biomeGen.GenerationNormal;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -24,7 +24,7 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.GameData;
 
-public final class WorldGenWildCaves {
+public final class WorldGenBetterUnderGround {
 	public static float probabilityVinesJungle;
 	public static float probabilityVines;
 	public static float probabilityIcicle;
@@ -49,7 +49,7 @@ public final class WorldGenWildCaves {
 	private static final GenerationNormal normalGen = new GenerationNormal();
 	private static final GenerationFrozen frozenGen = new GenerationFrozen();
 
-	public WorldGenWildCaves(Configuration config) {
+	public WorldGenBetterUnderGround(Configuration config) {
 		setConfig(config);
 	}
 

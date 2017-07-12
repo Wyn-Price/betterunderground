@@ -1,4 +1,4 @@
-package com.wynprice.wildCaves;
+package com.wynprice.betterunderground;
 
 import java.util.ArrayList;
 
@@ -24,11 +24,11 @@ public class ClientProxy extends ServerProxy{
     private static final String PREFIX = "betterunderground";
     @Override
     public void registerModelBakery() {
-    	mb(WildCaves.blockStoneStalactite, WildCaves.stalacs, "stone_");
-    	mb(WildCaves.blockSandStalactite, WildCaves.sandStalacs, "sandstone_");
-    	mb(WildCaves.blockDecorations, WildCaves.icicles, "icicle_");
-   		mb(WildCaves.blockFlora, WildCaves.caps, "flora_");
-   		mb(WildCaves.blockFossils, WildCaves.fossils, "fossil_");
+    	mb(BetterUnderground.blockStoneStalactite, BetterUnderground.stalacs, "stone_");
+    	mb(BetterUnderground.blockSandStalactite, BetterUnderground.sandStalacs, "sandstone_");
+    	mb(BetterUnderground.blockDecorations, BetterUnderground.icicles, "icicle_");
+   		mb(BetterUnderground.blockFlora, BetterUnderground.caps, "flora_");
+   		mb(BetterUnderground.blockFossils, BetterUnderground.fossils, "fossil_");
     }
 
 	private void mb(Block block, ArrayList<String> size, String Suffix)
@@ -41,7 +41,7 @@ public class ClientProxy extends ServerProxy{
         	
         ResourceLocation[] names = new ResourceLocation[ArrayNames.size()];
         names = ArrayNames.toArray(names);
-    	ModelBakery.registerItemVariants(Item.getItemFromBlock(WildCaves.blockStoneStalactite), names);
+    	ModelBakery.registerItemVariants(Item.getItemFromBlock(BetterUnderground.blockStoneStalactite), names);
     	
 	}
 	
@@ -57,11 +57,11 @@ public class ClientProxy extends ServerProxy{
     
 	   @Override
 	public void registerRenders() {
-		   regItemMesher(WildCaves.blockStoneStalactite, WildCaves.stalacs, "stone_");
-	   		regItemMesher(WildCaves.blockSandStalactite, WildCaves.sandStalacs, "sandstone_");
-	   		regItemMesher(WildCaves.blockDecorations, WildCaves.icicles, "icicle_");
-	   		regItemMesher(WildCaves.blockFlora, WildCaves.caps, "flora_");
-	   		regItemMesher(WildCaves.blockFossils, WildCaves.fossils, "fossil_");
+		   regItemMesher(BetterUnderground.blockStoneStalactite, BetterUnderground.stalacs, "stone_");
+	   		regItemMesher(BetterUnderground.blockSandStalactite, BetterUnderground.sandStalacs, "sandstone_");
+	   		regItemMesher(BetterUnderground.blockDecorations, BetterUnderground.icicles, "icicle_");
+	   		regItemMesher(BetterUnderground.blockFlora, BetterUnderground.caps, "flora_");
+	   		regItemMesher(BetterUnderground.blockFossils, BetterUnderground.fossils, "fossil_");
 	}
       
 	  @Override
@@ -70,12 +70,12 @@ public class ClientProxy extends ServerProxy{
             @Override
             public int colorMultiplier(IBlockState iBlockState, IBlockAccess iBlockAccess, BlockPos blockPos, int i) {
                 if(iBlockState != null){
-                    if(WildCaves.blockFlora.getMetaFromState(iBlockState) < 6)
+                    if(BetterUnderground.blockFlora.getMetaFromState(iBlockState) < 6)
                         return iBlockAccess != null ? BiomeColorHelper.getFoliageColorAtPos(iBlockAccess, blockPos) : ColorizerFoliage.getFoliageColorBasic();
                 }
                 return -1;
             }
-        }, WildCaves.blockFlora);
+        }, BetterUnderground.blockFlora);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
             @Override
             public int getColorFromItemstack(ItemStack itemStack, int i) {
@@ -83,7 +83,7 @@ public class ClientProxy extends ServerProxy{
                     return ColorizerFoliage.getFoliageColorBasic();
                 return -1;
             }
-        }, WildCaves.blockFlora);
+        }, BetterUnderground.blockFlora);
     	ModBlocks.invtab();
     }
 

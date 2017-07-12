@@ -1,4 +1,4 @@
-package com.wynprice.wildCaves;
+package com.wynprice.betterunderground;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -10,7 +10,7 @@ import java.util.Random;
 
 public final class EventManager
 {
-    private final WorldGenMinable[] mines = {new WorldGenMinable(WildCaves.blockFossils.getDefaultState(), 4), new WorldGenMinable(WildCaves.blockFossils.getDefaultState(), 5), new WorldGenMinable(WildCaves.blockFossils.getDefaultState(), 6)};
+    private final WorldGenMinable[] mines = {new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 4), new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 5), new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 6)};
 	private final int chanceForNodeToSpawn;
 	public EventManager(int chanceForNodeToSpawn)
 	{
@@ -19,7 +19,7 @@ public final class EventManager
 
 	@SubscribeEvent
 	public void generate(OreGenEvent.Post oreGen){
-        if (!WorldGenWildCaves.dimensionBlacklist.contains(oreGen.getWorld().provider.getDimension())) {
+        if (!WorldGenBetterUnderGround.dimensionBlacklist.contains(oreGen.getWorld().provider.getDimension())) {
             this.addOreSpawn(oreGen.getRand().nextInt(mines.length), oreGen.getWorld(), oreGen.getRand(), oreGen.getPos());
         }
     }
