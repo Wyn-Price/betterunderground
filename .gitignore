@@ -3,6 +3,7 @@ Thumbs.db
 ehthumbs.db
 /*
 !/src
+!build.gradle
 
 # Folder config file
 Desktop.ini
