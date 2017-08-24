@@ -37,7 +37,7 @@ import java.util.Arrays;
 
 import javax.swing.text.html.parser.Entity;
 
-@Mod(modid = "betterunderground", name = "Better Underground", version = "1.0.0")
+@Mod(modid = "betterunderground", name = "Better Underground", version = "1.0.1")
 public final class BetterUnderground {
     @SidedProxy(clientSide = "com.wynprice.betterunderground.ClientProxy", serverSide = "com.wynprice.betterunderground.ServerProxy")
     public static ServerProxy proxy;
