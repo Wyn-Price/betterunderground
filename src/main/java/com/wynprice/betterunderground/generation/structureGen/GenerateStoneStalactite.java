@@ -46,9 +46,8 @@ public class GenerateStoneStalactite {
 			if (!world.getBlockState(botY).getMaterial().isLiquid() && WorldGenBetterUnderGround.isWhiteListed(world.getBlockState(botY.down()).getBlock())) {
 				aux = Utils.randomChoise(-1, 8, 9, 10);
 				if (aux != -1) {
-                    generateStalagmiteBase(world, random, botY, aux);
 					j++;
-					stalagmiteGenerated = true;
+					stalagmiteGenerated = generateStalagmiteBase(world, random, botY, aux);
 				}
 			}
 			if (j==2) {
@@ -85,8 +84,11 @@ public class GenerateStoneStalactite {
 		}
 	}
 
-    protected void generateStalagmiteBase(World world, Random random, BlockPos botY, int aux) {
+    protected boolean generateStalagmiteBase(World world, Random random, BlockPos botY, int aux) {
+    	if(world.isAirBlock(botY.down()))
+    		return false;
         world.setBlockState(botY, blockId.getStateFromMeta(aux), 2);
+        return true;
     }
 
     protected void generateStalactiteBase(World world, Random random, BlockPos topY) {

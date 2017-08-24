@@ -21,10 +21,11 @@ public final class GenerateSandstoneStalactites extends GenerateStoneStalactite{
     }
 
     @Override
-    protected void generateStalagmiteBase(World world, Random random, BlockPos botY, int aux) {
+    protected boolean generateStalagmiteBase(World world, Random random, BlockPos botY, int aux) {
         if (world.getBlockState(botY.down()) == Blocks.STONE)
             world.setBlockState(botY.down(), Blocks.SANDSTONE.getDefaultState(), 2);
-        super.generateStalagmiteBase(world, random, botY, aux);
+        boolean r = super.generateStalagmiteBase(world, random, botY, aux);
         Utils.convertToSandType(world, random, botY);
+        return r;
     }
 }
