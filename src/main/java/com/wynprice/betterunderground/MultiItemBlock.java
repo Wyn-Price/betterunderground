@@ -1,10 +1,10 @@
 package com.wynprice.betterunderground;
 
+import java.util.ArrayList;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-
-import java.util.ArrayList;
 
 public class MultiItemBlock extends ItemBlock {
 	private final ArrayList<String> subNames;
