@@ -142,7 +142,7 @@ public final class WorldGenBetterUnderGround {
         // --Biome specific ratios------
         category = "Biome specific";
         probabilityVinesJungle = (float) config.get(category, "Probability of vines on jungle caves", 0.5).getDouble(0.5);
-        probabilityIcicle = (float) config.get(category, "Probability of icicles on frozen caves", 0.6).getDouble(0.6);
+        probabilityIcicle = (float) config.get(category, "Probability of icicles on frozen caves", 1.0).getDouble(0.6);
         try{
             block = Block.getBlockFromName(config.get(category, "Block to generate in frozen caves", "ice").getString().trim());
             if(block!=null && block.getMapColor(null, null, null) == MapColor.ICE){
@@ -150,10 +150,10 @@ public final class WorldGenBetterUnderGround {
             }
         }catch (Throwable n){
         }
-        probabilityWet = (float) config.get(category, "Probability of more water fountains on wet caves", 0.1).getDouble(0.1);
+        probabilityWet = (float) config.get(category, "Probability of more water fountains on wet caves", 0.3).getDouble(0.1);
         probabilityDry = (float) config.get(category, "Probability of less generation arid caves", 0.5).getDouble(0.5);
         probabilityGlowcapsHumid = (float) config.get(category, "Probability of Glowing mushrooms on humid/jungle caves", 0.3).getDouble(0.3);
-        probabilityIceshrooms = (float) config.get(category, "Probability of Glowing Ice mushrooms on frozen caves", 0.3).getDouble(0.3);
+        probabilityIceshrooms = (float) config.get(category, "Probability of Glowing Ice mushrooms on frozen caves", 1.0).getDouble(0.3);
         probabilitySandStalactites = (float) config.get(category, "Probability of sandstone stalactites on arid caves", 4).getDouble(4);
         // --General ratios------
         category = "Non biome specific";
