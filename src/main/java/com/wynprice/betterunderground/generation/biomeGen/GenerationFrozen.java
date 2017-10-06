@@ -1,16 +1,16 @@
 package com.wynprice.betterunderground.generation.biomeGen;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-
 import java.util.Random;
 
 import com.wynprice.betterunderground.Utils;
 import com.wynprice.betterunderground.WorldGenBetterUnderGround;
 import com.wynprice.betterunderground.generation.structureGen.DecorationHelper;
 import com.wynprice.betterunderground.generation.structureGen.GenerateStoneStalactite;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 public final class GenerationFrozen extends WorldGenerator {
 	public GenerationFrozen() {

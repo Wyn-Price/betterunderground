@@ -1,15 +1,15 @@
 package com.wynprice.betterunderground.generation.structureGen;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
 import java.util.Random;
 
 import com.wynprice.betterunderground.BetterUnderground;
 import com.wynprice.betterunderground.Utils;
 import com.wynprice.betterunderground.WorldGenBetterUnderGround;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class GenerateStoneStalactite {
     public Block blockId;
