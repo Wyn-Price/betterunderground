@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = "betterunderground", name = "Better Underground", version = "1.0.3")
+@Mod(modid = "betterunderground", name = "Better Underground", version = "1.0.3", acceptedMinecraftVersions = "[1.12,1.12.1,1.12.2]", useMetadata = true)
 public final class BetterUnderground {
     @SidedProxy(clientSide = "com.wynprice.betterunderground.ClientProxy", serverSide = "com.wynprice.betterunderground.ServerProxy")
     public static ServerProxy proxy;
@@ -72,14 +72,6 @@ public final class BetterUnderground {
                 return new ItemStack(ModBlocks.SS, 1, 0);
             }
         };
-        /*
-        blockStoneStalactite = GameRegistry.registerBlock(new BlockStoneStalactite().setCreativeTab(tabWildCaves), ItemStalactite.class, "StoneStalactite", stalacs);
-        blockSandStalactite = GameRegistry.registerBlock(new BlockStalactite(Item.getItemFromBlock(Blocks.SANDSTONE)).
-                setUnlocalizedName("sandstoneStalactiteBlock").setCreativeTab(tabWildCaves), ItemStalactite.class, "SandstoneSalactite", sandStalacs);
-        blockDecorations = GameRegistry.registerBlock(new BlockDecorations().setCreativeTab(tabWildCaves), MultiItemBlock.class, "Decorations", icicles);
-        blockFlora = GameRegistry.registerBlock(new BlockFlora().setLightLevel(floraLightLevel).setCreativeTab(tabWildCaves), MultiItemBlock.class, "Flora", caps);
-        blockFossils = GameRegistry.registerBlock(new BlockFossils().setCreativeTab(tabWildCaves), MultiItemBlock.class, "FossilBlock", fossils);
-		*/
         int chanceForNodeToSpawn = config.get(Configuration.CATEGORY_GENERAL, "Chance for a fossil node to generate", 5).getInt();
         if(chanceForNodeToSpawn > 0) {
             MinecraftForge.ORE_GEN_BUS.register(new EventManager(chanceForNodeToSpawn));
