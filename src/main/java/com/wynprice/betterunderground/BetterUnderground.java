@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = "betterunderground", name = "Better Underground", version = "1.0.4", acceptedMinecraftVersions = "[1.12,1.12.1,1.12.2]", useMetadata = true)
+@Mod(modid = "betterunderground", name = "Better Underground", version = "1.0.4", useMetadata = true)
 public final class BetterUnderground {
     @SidedProxy(clientSide = "com.wynprice.betterunderground.ClientProxy", serverSide = "com.wynprice.betterunderground.ServerProxy")
     public static ServerProxy proxy;
