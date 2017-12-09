@@ -78,7 +78,7 @@ public class ClientProxy extends ServerProxy{
         }, BetterUnderground.blockFlora);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
             @Override
-            public int getColorFromItemstack(ItemStack itemStack, int i) {
+            public int colorMultiplier(ItemStack itemStack, int i) {
                 if(itemStack.getMetadata() < 6)
                     return ColorizerFoliage.getFoliageColorBasic();
                 return -1;

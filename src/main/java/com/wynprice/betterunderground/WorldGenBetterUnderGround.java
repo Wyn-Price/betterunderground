@@ -78,7 +78,7 @@ public final class WorldGenBetterUnderGround {
 					//dist = Utils.getNumEmptyBlocks(world, Xcoord, Ycoord, Zcoord);
 					if (biome.getTempCategory().equals(TempCategory.COLD))
 						frozenGen.generate(world, random, coord);
-					else if (biome.getTemperature() > 1.5f && biome.getRainfall() < 0.1f)
+					else if (biome.getDefaultTemperature() > 1.5f && biome.getRainfall() < 0.1f)
 						aridGen.generate(world, random, coord);
 					else if (biome.getTempCategory().equals(TempCategory.WARM))
 						jungleGen.generate(world, random, coord);
