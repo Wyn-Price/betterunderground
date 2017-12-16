@@ -454,7 +454,7 @@ public class BlockStalactite extends Block {
 	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox,
 			List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) {
 		if(BetterUnderground.solidStalactites)
-			addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entityIn, p_185477_7_);
+			super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entityIn, p_185477_7_);
 	}
 
 	@Override

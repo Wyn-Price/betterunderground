@@ -23,19 +23,14 @@ public class BlockFossils extends Block {
 	public Item getItemDropped(IBlockState metadata, Random random, int par3) {
 		int choise = Utils.weightedChoise(0.5f, 0.15f, 0.05f, 0.5f, 0, 0);
 		Item result = null;
-		switch (choise) {
-		case 1:
+		if(choise == 1)
 			result = Items.BONE;
-			break;
-		case 2:
+		else if(choise == 2 && BetterUnderground.bonePileArrowDrop)
 			result = Items.ARROW;
-			break;
-		case 3:
+		else if(choise == 3)
 			result = Items.SKULL;
-			break;
-		case 4:
+		else
 			result = Item.getItemFromBlock(Blocks.COBBLESTONE);
-		}
 		return result;
 	}
 

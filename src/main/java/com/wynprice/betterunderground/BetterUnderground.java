@@ -41,9 +41,10 @@ public final class BetterUnderground {
 	public static final ArrayList<String> fossils = new ArrayList<String>(Arrays.asList("fossil1"));
     public static Block blockFlora, blockDecorations, blockFossils;
 	public static Block blockStoneStalactite, blockSandStalactite;
-	public static boolean solidStalactites, damageWhenFallenOn;
+	public static boolean solidStalactites, damageWhenFallenOn, bonePileArrowDrop;
 	private static Configuration config;
     private static int chestSkull = 50;
+    
 
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
@@ -64,6 +65,7 @@ public final class BetterUnderground {
 		config = new Configuration(event.getSuggestedConfigurationFile());
         solidStalactites = config.getBoolean("Solid stalactites/stalgmites", Configuration.CATEGORY_GENERAL, false, "Whether stalactites can be collided with.");
         damageWhenFallenOn = config.getBoolean("Stalgmites damage entities when fallen on", Configuration.CATEGORY_GENERAL, false, "Whether living beings would be damaged when falling on the block.");
+        bonePileArrowDrop = config.getBoolean("Fossils have an arrow drop", Configuration.CATEGORY_GENERAL, true, "When Fossils are broken, should their be a chance of an arrow being dropped");
         int floraLightLevel = config.getInt("Flora light level", Configuration.CATEGORY_GENERAL, 5, 0, 15, "How much light is emitted by the mushrooms.");
 
         tab = new CreativeTabs("betterunderground") {
