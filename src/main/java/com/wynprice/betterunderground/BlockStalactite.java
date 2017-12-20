@@ -83,7 +83,7 @@ public class BlockStalactite extends Block {
 
     @Override
     public int quantityDropped(Random rand) {
-        return rand.nextInt(3) - 1;
+        return rand.nextInt(2);
     }
 
 	public boolean canBlockStay(World world, BlockPos pos, IBlockState state) {
