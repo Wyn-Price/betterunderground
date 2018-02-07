@@ -77,13 +77,8 @@ public class BlockStalactite extends Block {
     }
     
     @Override
-    protected ItemStack getSilkTouchDrop(IBlockState state) {
-    	return new ItemStack(this, 1, 0);
-    }
-
-    @Override
     public int quantityDropped(Random rand) {
-        return rand.nextInt(2);
+    	return rand.nextInt(3) - 1;
     }
 
 	public boolean canBlockStay(World world, BlockPos pos, IBlockState state) {
@@ -98,27 +93,11 @@ public class BlockStalactite extends Block {
 		return result;
 	}
 	
-	
+
 	@Override
-	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
-    {
-        player.addStat(StatList.getBlockStats(this));
-        player.addExhaustion(0.005F);
-        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) > 0)
-        {
-        	ArrayList<ItemStack> list = new ArrayList<ItemStack>();
-        	list.add(new ItemStack(this, 1, 0));
-            net.minecraftforge.event.ForgeEventFactory.fireBlockHarvesting(list, worldIn, pos, state, 0, 1.0f, true, player);
-            spawnAsEntity(worldIn, pos, new ItemStack(this, 1, 0));
-        }
-        else
-        {
-            harvesters.set(player);
-            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack);
-            this.dropBlockAsItem(worldIn, pos, state, i);
-            harvesters.set(null);
-        }
-    }
+	protected boolean canSilkHarvest() {
+		return false;
+	}
 
 	//aux funtion for canblockStay
 	public boolean connected(World world, BlockPos pos, boolean searchUp) {

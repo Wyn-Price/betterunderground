@@ -29,7 +29,7 @@ public class BlockDecorations extends Block {
 
 	public BlockDecorations() {
 		super(Material.PACKED_ICE);
-        this.setResistance(0.6F);
+        this.setHardness(0.6F);
         this.setUnlocalizedName("decorationsBlock");
         this.setRegistryName("Blockdecorations");
 		this.setSoundType(SoundType.GLASS);
@@ -70,7 +70,7 @@ public class BlockDecorations extends Block {
 
 	@Override
 	protected boolean canSilkHarvest() {
-		return true;
+		return false;
 	}
 
 	@Override
