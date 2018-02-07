@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 
 public class MultiItemBlock extends ItemBlock {
 	private final ArrayList<String> subNames;
