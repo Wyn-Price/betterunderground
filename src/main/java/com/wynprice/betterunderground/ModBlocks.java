@@ -10,13 +10,14 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class ModBlocks 
 {
-	public static Block f, d ,F, SS, SaS;
+	public static Block f, d ,F, md, SS, SaS;
 	
 	public static void init()
 	{
 		f = new BlockFlora();
 		d = new BlockDecorations();
 		F = new BlockFossils();
+		md = new BlockMossyDirt();
 		SS = new BlockStoneStalactite();
 		SaS = new BlockStalactite(Item.getItemFromBlock(Blocks.SANDSTONE)).setUnlocalizedName("sandstoneStalactiteBlock").setRegistryName("BlockSandstoneStalactite");
 	}
@@ -24,14 +25,16 @@ public class ModBlocks
 	public static void reg()
 	{
 
-		regBlock(f,64);
-		regBlock(d,64);
+		regBlock(f, 64);
+		regBlock(d, 64);
 		regBlock(F, 64);
+		regBlock(md, 64);
 		regBlock(SS, 64);
 		regBlock(SaS, 64);
 		BetterUnderground.blockFlora = f;
 		BetterUnderground.blockDecorations = d;
 		BetterUnderground.blockFossils = F;
+		BetterUnderground.mossyDirt = md;
 		BetterUnderground.blockStoneStalactite = SS;
 		BetterUnderground.blockSandStalactite = SaS;
 	}
@@ -50,6 +53,9 @@ public class ModBlocks
 			break;
 		case "BlockFossils":
 			item = new MultiItemBlock(block, getn("fossil_", BetterUnderground.fossils.size()));
+			break;
+		case "BlockMossyDirt":
+			item = new MultiItemBlock(block, getn(null, BetterUnderground.mossy.size()));
 			break;
 		case "BlockStoneStalactite":
 			item = new MultiItemBlock(block, getn("stone_", BetterUnderground.stalacs.size()));
@@ -74,7 +80,7 @@ public class ModBlocks
 	
 	public static void invtab()
 	{
-		for(Block b : Arrays.asList(f,d,F,SS,SaS))
+		for(Block b : Arrays.asList(f,d,F,md,SS,SaS))
 		{
 			b.setCreativeTab(BetterUnderground.tab);
 		}

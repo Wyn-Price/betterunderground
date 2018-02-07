@@ -39,7 +39,8 @@ public final class BetterUnderground {
     public static final ArrayList<String> icicles = new ArrayList<String>(Arrays.asList("icicle1", "icicle2", "icicle3"));
     public static final ArrayList<String> caps = new ArrayList<String>(Arrays.asList("glowcap1", "glowcap2", "glowcap3", "gloweed1", "glowcap4top", "glowcap4bottom", "bluecap1", "bluecap2", "bluecap3", "bluecap4"));
 	public static final ArrayList<String> fossils = new ArrayList<String>(Arrays.asList("fossil1"));
-    public static Block blockFlora, blockDecorations, blockFossils;
+	public static final ArrayList<String> mossy = new ArrayList<String>(Arrays.asList("mossy"));
+    public static Block blockFlora, blockDecorations, blockFossils, mossyDirt;
 	public static Block blockStoneStalactite, blockSandStalactite;
 	public static boolean solidStalactites, damageWhenFallenOn, bonePileArrowDrop;
 	private static Configuration config;

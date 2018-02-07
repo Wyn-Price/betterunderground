@@ -29,6 +29,7 @@ public class ClientProxy extends ServerProxy{
     	mb(BetterUnderground.blockDecorations, BetterUnderground.icicles, "icicle_");
    		mb(BetterUnderground.blockFlora, BetterUnderground.caps, "flora_");
    		mb(BetterUnderground.blockFossils, BetterUnderground.fossils, "fossil_");
+   		mb(BetterUnderground.mossyDirt, BetterUnderground.mossy, "mossy_");
     }
 
 	private void mb(Block block, ArrayList<String> size, String Suffix)
@@ -62,6 +63,7 @@ public class ClientProxy extends ServerProxy{
 	   		regItemMesher(BetterUnderground.blockDecorations, BetterUnderground.icicles, "icicle_");
 	   		regItemMesher(BetterUnderground.blockFlora, BetterUnderground.caps, "flora_");
 	   		regItemMesher(BetterUnderground.blockFossils, BetterUnderground.fossils, "fossil_");
+	   		regItemMesher(BetterUnderground.mossyDirt, BetterUnderground.mossy, "mossy_");
 	}
       
 	  @Override
@@ -85,17 +87,5 @@ public class ClientProxy extends ServerProxy{
             }
         }, BetterUnderground.blockFlora);
     	ModBlocks.invtab();
-    }
-
-    @Override
-    public void MUD(){
-        try {
-            Class.forName("mods.mud.ModUpdateDetector").getDeclaredMethod("registerMod", ModContainer.class, String.class, String.class).invoke(null,
-                    FMLCommonHandler.instance().findContainerFor(this),
-                    "https://raw.github.com/GotoLink/WildCaves3/master/update.xml",
-                    "https://raw.github.com/GotoLink/WildCaves3/master/changelog.md"
-            );
-        } catch (Throwable e) {
-        }
     }
 }
