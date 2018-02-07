@@ -10,7 +10,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public final class EventManager
 {
-    private final WorldGenMinable[] mines = {new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 4), new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 5), new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 6)};
+    private final WorldGenMinable[] mines = 
+    	{new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 4),
+    	 new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 5), 
+    	 new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 6),
+    	 new WorldGenMinable(BetterUnderground.mossyDirt.getDefaultState(), 5),
+    	};
 	private final int chanceForNodeToSpawn;
 	public EventManager(int chanceForNodeToSpawn)
 	{
