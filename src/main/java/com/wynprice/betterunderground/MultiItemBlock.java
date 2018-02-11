@@ -21,10 +21,5 @@ public class MultiItemBlock extends ItemBlock {
 			damage = 0;
 		return damage;
 	}
-/*
-	@Override
-	public String getUnlocalizedName(ItemStack itemstack) {
-		return subNames.get(itemstack.getMetadata());
-	}*/
 	
 }
