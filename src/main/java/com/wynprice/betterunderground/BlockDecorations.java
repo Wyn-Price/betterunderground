@@ -67,12 +67,6 @@ public class BlockDecorations extends Block {
 	public boolean canPlaceBlockAt(World world, BlockPos pos) {
 		return canBlockStay(world, pos) && super.canPlaceBlockAt(world, pos);
 	}
-
-	@Override
-	protected boolean canSilkHarvest() {
-		return false;
-	}
-
 	@Override
 	public int damageDropped(IBlockState state) {
 		return getMetaFromState(state);

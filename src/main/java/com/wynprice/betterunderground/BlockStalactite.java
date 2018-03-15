@@ -85,12 +85,6 @@ public class BlockStalactite extends Block {
 			result = connected(world, pos, true) || connected(world, pos, false);
 		return result;
 	}
-	
-
-	@Override
-	protected boolean canSilkHarvest() {
-		return false;
-	}
 
 	//aux funtion for canblockStay
 	public boolean connected(World world, BlockPos pos, boolean searchUp) {
