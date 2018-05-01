@@ -33,6 +33,7 @@ public class BlockFlora extends BlockBush implements IShearable {
 
 	public BlockFlora() {
 		super(Material.PLANTS);
+		this.setLightLevel(BetterUnderground.floraLightLevel);
 		this.setLightOpacity(0);
 		this.setSoundType(SoundType.PLANT);
         this.setResistance(0.6F);
@@ -44,7 +45,6 @@ public class BlockFlora extends BlockBush implements IShearable {
 	public int getNumOfStructures(){
 		return BetterUnderground.caps.size();
 	}
-	
 
 	@Override
 	protected BlockStateContainer createBlockState()
@@ -145,11 +145,5 @@ public class BlockFlora extends BlockBush implements IShearable {
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable){
         return true;
-    }
-
-    @Override
-    public Block setLightLevel(float val){
-        this.lightValue = (int)val;
-        return this;
     }
 }
