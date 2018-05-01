@@ -42,11 +42,10 @@ public final class BetterUnderground {
 	public static final ArrayList<String> mossy = new ArrayList<String>(Arrays.asList("mossy"));
     public static Block blockFlora, blockDecorations, blockFossils, mossyDirt;
 	public static Block blockStoneStalactite, blockSandStalactite;
-	public static boolean solidStalactites, damageWhenFallenOn, bonePileArrowDrop;
-	private static Configuration config;
+	public static boolean solidStalactites, damageWhenFallenOn, bonePileArrowDrop, shallDropGlowstone;
+	public static Configuration config;
     private static int chestSkull = 50;
     
-
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		proxy.init();
@@ -75,6 +74,7 @@ public final class BetterUnderground {
                 return new ItemStack(ModBlocks.SS, 1, 0);
             }
         };
+        boolean shallDropGlowstone = config.getBoolean("Glowstone Drop", Configuration.CATEGORY_GENERAL, true, "Shall glowshrooms drop glowstone?");
         int chanceForNodeToSpawn = config.get(Configuration.CATEGORY_GENERAL, "Chance for a fossil node to generate", 5).getInt();
         if(chanceForNodeToSpawn > 0) {
             MinecraftForge.ORE_GEN_BUS.register(new EventManager(chanceForNodeToSpawn));

@@ -88,7 +88,9 @@ public class BlockFlora extends BlockBush implements IShearable {
 
 	@Override
 	public Item getItemDropped(IBlockState par1, Random par2Random, int par3) {
+		if (BetterUnderground.shallDropGlowstone)
 		return Items.GLOWSTONE_DUST;
+		else return null;
 	}
 
 	@Override
