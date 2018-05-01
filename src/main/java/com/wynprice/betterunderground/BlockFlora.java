@@ -33,7 +33,7 @@ public class BlockFlora extends BlockBush implements IShearable {
 
 	public BlockFlora() {
 		super(Material.PLANTS);
-		this.setLightLevel(BetterUnderground.floraLightLevel);
+		this.setLightLevel(0.28F);
 		this.setLightOpacity(0);
 		this.setSoundType(SoundType.PLANT);
         this.setResistance(0.6F);

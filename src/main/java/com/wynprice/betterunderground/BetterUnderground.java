@@ -45,7 +45,6 @@ public final class BetterUnderground {
 	public static boolean solidStalactites, damageWhenFallenOn, bonePileArrowDrop, shallDropGlowstone;
 	public static Configuration config;
     public static int chestSkull = 50;
-    public static float floraLightLevel = 0.27F;
     
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
@@ -60,15 +59,14 @@ public final class BetterUnderground {
 	public static CreativeTabs tab;
 	
     @EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+	public static void preInit(FMLPreInitializationEvent event) {
     	ModBlocks.init();
     	ModBlocks.reg();
 		config = new Configuration(event.getSuggestedConfigurationFile());
         solidStalactites = config.getBoolean("Solid stalactites/stalgmites", Configuration.CATEGORY_GENERAL, false, "Whether stalactites can be collided with.");
         damageWhenFallenOn = config.getBoolean("Stalgmites damage entities when fallen on", Configuration.CATEGORY_GENERAL, false, "Whether living beings would be damaged when falling on the block.");
         bonePileArrowDrop = config.getBoolean("Fossils have an arrow drop", Configuration.CATEGORY_GENERAL, true, "When Fossils are broken, should their be a chance of an arrow being dropped");
-        floraLightLevel = config.getFloat("Flora light level", Configuration.CATEGORY_GENERAL, floraLightLevel, 0.0F, 10.0F, "How much light is emitted by the mushrooms.");
-
+        
         tab = new CreativeTabs("betterunderground") {
             @Override
             public ItemStack getTabIconItem() {
