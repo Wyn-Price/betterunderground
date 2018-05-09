@@ -1,0 +1,10 @@
+betterunderground=Better Underground
+itemGroup.betterunderground=Better Underground
+
+tile.fossilsBlock.name=Груда костей
+tile.mossyDirt.name=Замшелый дёрн
+
+tile.stoneStalactiteBlock.name=Каменный сталактит
+tile.sandstoneStalactiteBlock.name=Песчаниковый сталактит
+tile.floraBlock.name=Светящийся гриб
+tile.decorationsBlock.name=Сосулька
