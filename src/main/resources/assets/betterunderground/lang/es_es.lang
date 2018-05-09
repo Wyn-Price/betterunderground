@@ -1,4 +1,4 @@
-
+betterunderground=Better Underground
 itemGroup.betterunderground=Better Underground
 
 tile.fossilsBlock.name=Montón de Huesos
@@ -8,6 +8,3 @@ tile.stoneStalactiteBlock.name=Estalactita
 tile.sandstoneStalactiteBlock.name=Estalactita de Arenisca
 tile.floraBlock.name=Seta Brillante
 tile.decorationsBlock.name=Carámbano
-
-
-betterunderground=Better Underground

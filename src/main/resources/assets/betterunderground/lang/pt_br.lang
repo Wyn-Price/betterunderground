@@ -1,15 +1,10 @@
-
+betterunderground=Better Underground
 itemGroup.betterunderground=Better Underground
+
 tile.fossilsBlock.name=Pilha de Ossos
 tile.mossyDirt.name=Mossy Dirt
 
 tile.stoneStalactiteBlock.name=Estalactite
-
 tile.sandstoneStalactiteBlock.name=Estalactite de Arenito
-
 tile.floraBlock.name=Chlorophos
-
 tile.decorationsBlock.name=Cogumelo Picolé
-
-
-betterunderground=Better Underground
