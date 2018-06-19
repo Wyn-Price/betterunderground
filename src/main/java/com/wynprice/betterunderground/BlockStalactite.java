@@ -44,8 +44,7 @@ public class BlockStalactite extends Block {
 	public boolean isUp(IBlockState state){
 		return getMetaFromState(state) < 4;
 	}
-
-
+	
 	@Override
 	protected BlockStateContainer createBlockState(){
 		if(ALL_TYPE == null) {
