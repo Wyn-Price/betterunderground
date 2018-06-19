@@ -8,7 +8,7 @@
   "url": "",
   "updateUrl": "",
   "authorList": ["Wyn Price","kenijey"],
-  "logoFile": "",
+  "logoFile": "assets/betterunderground/logo/logo.png",
   "screenshots": [],
   "parent":"",
   "dependencies": [
