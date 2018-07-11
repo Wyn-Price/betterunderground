@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = "naturalunderground", name = "Natural Underground", version = "1.1.7", useMetadata = true)
+@Mod(modid = "naturalunderground", name = "Natural Underground", version = "1.0.0", useMetadata = true)
 public final class NaturalUnderground {
     @SidedProxy(clientSide = "com.kenijey.naturalunderground.ClientProxy", serverSide = "com.kenijey.naturalunderground.ServerProxy")
     public static ServerProxy proxy;
