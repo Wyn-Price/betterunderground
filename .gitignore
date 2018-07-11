@@ -4,6 +4,10 @@ ehthumbs.db
 /*
 !/src
 !build.gradle
+!build.gradle
+!BUILD_BUILD.bat
+!BUILD_SETUP.bat
+!BUILD_SETUP_REFRESH.bat
 
 # Folder config file
 Desktop.ini
