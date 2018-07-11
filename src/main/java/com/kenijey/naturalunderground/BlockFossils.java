@@ -1,4 +1,4 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.Random;
 
@@ -25,7 +25,7 @@ public class BlockFossils extends Block {
 		Item result = null;
 		if(choise == 1)
 			result = Items.BONE;
-		else if(choise == 2 && BetterUnderground.bonePileArrowDrop)
+		else if(choise == 2 && NaturalUnderground.bonePileArrowDrop)
 			result = Items.ARROW;
 		else if(choise == 3)
 			result = Items.SKULL;

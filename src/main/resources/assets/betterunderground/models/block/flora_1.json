@@ -1,6 +1,6 @@
 {
   "parent": "block/tinted_cross",
   "textures":{
-    "cross": "betterunderground:blocks/flora1"
+    "cross": "naturalunderground:blocks/flora1"
   }
 }

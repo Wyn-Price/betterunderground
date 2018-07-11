@@ -1,4 +1,4 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,9 +26,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = "betterunderground", name = "Better Underground", version = "1.1.7", useMetadata = true)
-public final class BetterUnderground {
-    @SidedProxy(clientSide = "com.wynprice.betterunderground.ClientProxy", serverSide = "com.wynprice.betterunderground.ServerProxy")
+@Mod(modid = "naturalunderground", name = "Natural Underground", version = "1.1.7", useMetadata = true)
+public final class NaturalUnderground {
+    @SidedProxy(clientSide = "com.kenijey.naturalunderground.ClientProxy", serverSide = "com.kenijey.naturalunderground.ServerProxy")
     public static ServerProxy proxy;
 
     public static final ArrayList<String> stalacs = new ArrayList<String>(Arrays.asList("stalactite1", "stalactite2", "stalactite3", "stalactite4", "stalactiteConnection1", "stalactiteConnection2", "stalactiteConnection3",
@@ -49,7 +49,7 @@ public final class BetterUnderground {
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		proxy.init();
-		WorldGenBetterUnderGround gen = new WorldGenBetterUnderGround(config);
+		WorldGenNaturalUnderGround gen = new WorldGenNaturalUnderGround(config);
 		if (gen.maxLength > 0)
             MinecraftForge.EVENT_BUS.register(gen);
         if(chestSkull > 0)
@@ -67,7 +67,7 @@ public final class BetterUnderground {
         damageWhenFallenOn = config.getBoolean("Stalgmites damage entities when fallen on", Configuration.CATEGORY_GENERAL, false, "Whether living beings would be damaged when falling on the block.");
         bonePileArrowDrop = config.getBoolean("Fossils have an arrow drop", Configuration.CATEGORY_GENERAL, true, "When Fossils are broken, should their be a chance of an arrow being dropped");
         
-        tab = new CreativeTabs("betterunderground") {
+        tab = new CreativeTabs("naturalunderground") {
             @Override
             public ItemStack getTabIconItem() {
                 return new ItemStack(ModBlocks.SS, 1, 0);

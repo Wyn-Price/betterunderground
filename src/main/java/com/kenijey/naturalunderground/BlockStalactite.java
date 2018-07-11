@@ -1,4 +1,4 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +38,7 @@ public class BlockStalactite extends Block {
 	}
 
 	public int getNumOfStructures(){
-		return BetterUnderground.sandStalacs.size();
+		return NaturalUnderground.sandStalacs.size();
 	}
 
 	public boolean isUp(IBlockState state){
@@ -94,7 +94,7 @@ public class BlockStalactite extends Block {
 		else
 			increment = -1;
 		i = increment;
-		while (world.getBlockState(pos.up(i)).getBlock() == BetterUnderground.blockStoneStalactite || world.getBlockState(pos.up(i)).getBlock() == BetterUnderground.blockSandStalactite)
+		while (world.getBlockState(pos.up(i)).getBlock() == NaturalUnderground.blockStoneStalactite || world.getBlockState(pos.up(i)).getBlock() == NaturalUnderground.blockSandStalactite)
 			i = i + increment;
 		return world.getBlockState(pos.up(i)).isNormalCube();
 	}
@@ -160,7 +160,7 @@ public class BlockStalactite extends Block {
 				times++;
 			}
 			BlockPos startup = new BlockPos(x, finalY, z);
-			GenerateDown(world, new Random(), startup, times, WorldGenBetterUnderGround.maxLength, par5EntityLivingBase, par6ItemStack);
+			GenerateDown(world, new Random(), startup, times, WorldGenNaturalUnderGround.maxLength, par5EntityLivingBase, par6ItemStack);
 		}
 		if(world.isAirBlock(pos.add(0, 1, 0)) || world.getBlockState(pos.add(0, -1, 0)).getBlock() == this)
 		{
@@ -174,7 +174,7 @@ public class BlockStalactite extends Block {
 				times++;
 			}
 			BlockPos startup = new BlockPos(x, finalY, z);
-			GenerateUp(world, new Random(), startup, times, WorldGenBetterUnderGround.maxLength, par5EntityLivingBase, par6ItemStack);
+			GenerateUp(world, new Random(), startup, times, WorldGenNaturalUnderGround.maxLength, par5EntityLivingBase, par6ItemStack);
 		}
 	}
 	
@@ -193,7 +193,7 @@ public class BlockStalactite extends Block {
 			if(Arrays.asList(getStateFromMeta(5), getStateFromMeta(4)).contains((world.getBlockState(pos.add(0, -1, 0)))) && world.getBlockState(pos.add(0, -2, 0)).getBlock() == (Block)this)
 				world.setBlockState(pos.add(0, -1, 0), getStateFromMeta(Utils.randomChoise(6,12)), 2);
 			int up = -1;
-			for(int i = 0; i < WorldGenBetterUnderGround.maxLength; i++)
+			for(int i = 0; i < WorldGenNaturalUnderGround.maxLength; i++)
 			{
 				if(world.getBlockState(pos.add(0, i, 0)).getBlock() != (Block) this)
 				{
@@ -207,7 +207,7 @@ public class BlockStalactite extends Block {
 				return;
 			}
 			int down = -1;
-			for(int i = 0; i < WorldGenBetterUnderGround.maxLength; i++)
+			for(int i = 0; i < WorldGenNaturalUnderGround.maxLength; i++)
 			{
 				if(world.getBlockState(pos.add(0, -i, 0)).getBlock() != (Block) this)
 				{
@@ -365,14 +365,14 @@ public class BlockStalactite extends Block {
 
 	@Override
 	public void onFallenUpon(World world, BlockPos pos, Entity entity, float par6) {
-		if (BetterUnderground.damageWhenFallenOn && entity.isEntityAlive()) {
+		if (NaturalUnderground.damageWhenFallenOn && entity.isEntityAlive()) {
 			entity.attackEntityFrom(DamageSource.GENERIC, 5);
 		}
 	}
 
 	@Override
 	public void onLanded(World world, Entity entity) {
-		if(BetterUnderground.solidStalactites)
+		if(NaturalUnderground.solidStalactites)
 			super.onLanded(world, entity);
 	}
 
@@ -412,13 +412,13 @@ public class BlockStalactite extends Block {
 
 	@Override
 	public boolean isPassable(IBlockAccess access, BlockPos pos) {
-		return !BetterUnderground.solidStalactites || super.isPassable(access, pos);
+		return !NaturalUnderground.solidStalactites || super.isPassable(access, pos);
 	}
 	
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox,
 			List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) {
-		if(BetterUnderground.solidStalactites)
+		if(NaturalUnderground.solidStalactites)
 			super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entityIn, p_185477_7_);
 	}
 

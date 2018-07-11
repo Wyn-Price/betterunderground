@@ -1,4 +1,4 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.List;
 import java.util.Random;
@@ -37,7 +37,7 @@ public class BlockDecorations extends Block {
 	}
 
 	public int getNumOfStructures(){
-		return BetterUnderground.icicles.size();
+		return NaturalUnderground.icicles.size();
 	}
 
 	@Override

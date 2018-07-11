@@ -1,9 +1,9 @@
-package com.wynprice.betterunderground.generation.structureGen;
+package com.kenijey.naturalunderground.generation.structureGen;
 
 import java.util.Random;
 
-import com.wynprice.betterunderground.BetterUnderground;
-import com.wynprice.betterunderground.Utils;
+import com.kenijey.naturalunderground.NaturalUnderground;
+import com.kenijey.naturalunderground.Utils;
 
 import net.minecraft.block.BlockVine;
 import net.minecraft.init.Blocks;
@@ -53,9 +53,9 @@ public final class DecorationHelper {
                 glowcapNum = random.nextInt(5);
             else
                 glowcapNum = random.nextInt(4);
-            world.setBlockState(pos, BetterUnderground.blockFlora.getStateFromMeta(glowcapNum), 2);
+            world.setBlockState(pos, NaturalUnderground.blockFlora.getStateFromMeta(glowcapNum), 2);
             if (glowcapNum == 4) {
-                world.setBlockState(pos.up(), BetterUnderground.blockFlora.getStateFromMeta(glowcapNum + 1), 2);
+                world.setBlockState(pos.up(), NaturalUnderground.blockFlora.getStateFromMeta(glowcapNum + 1), 2);
             }
             return true;
         } else
@@ -71,7 +71,7 @@ public final class DecorationHelper {
         if (!world.isAirBlock(pos.down())) {
             if (!world.getBlockState(pos).getMaterial().isLiquid()) {
                 world.setBlockState(pos.down(), Utils.frozen.getDefaultState(), 2);
-                world.setBlockState(pos, BetterUnderground.blockFlora.getStateFromMeta(Utils.randomChoise(6, 7, 8, 9)), 2);
+                world.setBlockState(pos, NaturalUnderground.blockFlora.getStateFromMeta(Utils.randomChoise(6, 7, 8, 9)), 2);
             }
             Utils.convertToFrozenType(world, random, pos);
         }
@@ -80,7 +80,7 @@ public final class DecorationHelper {
     //place icicle surrounded by "frozen" type of blocks  at the specified x,y,z
     public static void generateIcicles(World world, Random random, BlockPos pos, int distance) {
         world.setBlockState(pos.up(), Utils.frozen.getDefaultState(), 2);
-        world.setBlockState(pos, BetterUnderground.blockDecorations.getStateFromMeta(Utils.randomChoise(0, 1, 2)), 2);
+        world.setBlockState(pos, NaturalUnderground.blockDecorations.getStateFromMeta(Utils.randomChoise(0, 1, 2)), 2);
         Utils.convertToFrozenType(world, random, pos);
         BlockPos botY = pos.down(distance - 1);
         if (distance!=0 && !world.getBlockState(botY).getMaterial().isLiquid()) {

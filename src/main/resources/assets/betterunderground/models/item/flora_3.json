@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "betterunderground:blocks/flora3"
+    "layer0": "naturalunderground:blocks/flora3"
   }
   
 }

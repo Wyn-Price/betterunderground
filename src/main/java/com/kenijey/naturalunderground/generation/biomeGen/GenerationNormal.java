@@ -1,11 +1,11 @@
-package com.wynprice.betterunderground.generation.biomeGen;
+package com.kenijey.naturalunderground.generation.biomeGen;
 
 import java.util.Random;
 
-import com.wynprice.betterunderground.Utils;
-import com.wynprice.betterunderground.WorldGenBetterUnderGround;
-import com.wynprice.betterunderground.generation.structureGen.DecorationHelper;
-import com.wynprice.betterunderground.generation.structureGen.GenerateStoneStalactite;
+import com.kenijey.naturalunderground.Utils;
+import com.kenijey.naturalunderground.WorldGenNaturalUnderGround;
+import com.kenijey.naturalunderground.generation.structureGen.DecorationHelper;
+import com.kenijey.naturalunderground.generation.structureGen.GenerateStoneStalactite;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -18,8 +18,8 @@ public final class GenerationNormal extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random random, BlockPos pos) {
-		switch (Utils.weightedChoise(WorldGenBetterUnderGround.probabilityVines, WorldGenBetterUnderGround.probabilitySpiderWeb, WorldGenBetterUnderGround.probabilityStalactite, WorldGenBetterUnderGround.probabilityGlowcaps,
-				WorldGenBetterUnderGround.probabilitySkulls, 0)) {
+		switch (Utils.weightedChoise(WorldGenNaturalUnderGround.probabilityVines, WorldGenNaturalUnderGround.probabilitySpiderWeb, WorldGenNaturalUnderGround.probabilityStalactite, WorldGenNaturalUnderGround.probabilityGlowcaps,
+				WorldGenNaturalUnderGround.probabilitySkulls, 0)) {
 		case 1:
 			DecorationHelper.generateVines(world, random, pos);
             return true;
@@ -28,7 +28,7 @@ public final class GenerationNormal extends WorldGenerator {
             return true;
 		case 3:
             GenerateStoneStalactite g = new GenerateStoneStalactite();
-            g.generate(world, random, pos, Utils.getNumEmptyBlocks(world, pos), WorldGenBetterUnderGround.maxLength);
+            g.generate(world, random, pos, Utils.getNumEmptyBlocks(world, pos), WorldGenNaturalUnderGround.maxLength);
             return true;
 		case 4:
 			DecorationHelper.generateGlowcaps(world, random, pos);

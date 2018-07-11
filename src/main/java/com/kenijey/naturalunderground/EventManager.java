@@ -1,4 +1,4 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.Random;
 
@@ -11,10 +11,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public final class EventManager
 {
     private final WorldGenMinable[] mines = 
-    	{new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 4),
-    	 new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 5), 
-    	 new WorldGenMinable(BetterUnderground.blockFossils.getDefaultState(), 6),
-    	 new WorldGenMinable(BetterUnderground.mossyDirt.getDefaultState(), 6),
+    	{new WorldGenMinable(NaturalUnderground.blockFossils.getDefaultState(), 4),
+    	 new WorldGenMinable(NaturalUnderground.blockFossils.getDefaultState(), 5), 
+    	 new WorldGenMinable(NaturalUnderground.blockFossils.getDefaultState(), 6),
+    	 new WorldGenMinable(NaturalUnderground.mossyDirt.getDefaultState(), 6),
     	};
 	private final int chanceForNodeToSpawn;
 	public EventManager(int chanceForNodeToSpawn)
@@ -24,7 +24,7 @@ public final class EventManager
 
 	@SubscribeEvent
 	public void generate(OreGenEvent.Post oreGen){
-        if (!WorldGenBetterUnderGround.dimensionBlacklist.contains(oreGen.getWorld().provider.getDimension())) {
+        if (!WorldGenNaturalUnderGround.dimensionBlacklist.contains(oreGen.getWorld().provider.getDimension())) {
             this.addOreSpawn(oreGen.getRand().nextInt(mines.length), oreGen.getWorld(), oreGen.getRand(), oreGen.getPos());
         }
     }

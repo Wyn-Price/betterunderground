@@ -1,4 +1,4 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.Random;
 
@@ -20,7 +20,7 @@ public class BlockStoneStalactite extends BlockStalactite {
 
 	@Override
 	public int getNumOfStructures(){
-		return BetterUnderground.stalacs.size();
+		return NaturalUnderground.stalacs.size();
 	}
 
 	@Override

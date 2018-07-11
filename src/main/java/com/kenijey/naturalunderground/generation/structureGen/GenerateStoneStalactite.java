@@ -1,10 +1,10 @@
-package com.wynprice.betterunderground.generation.structureGen;
+package com.kenijey.naturalunderground.generation.structureGen;
 
 import java.util.Random;
 
-import com.wynprice.betterunderground.BetterUnderground;
-import com.wynprice.betterunderground.Utils;
-import com.wynprice.betterunderground.WorldGenBetterUnderGround;
+import com.kenijey.naturalunderground.NaturalUnderground;
+import com.kenijey.naturalunderground.Utils;
+import com.kenijey.naturalunderground.WorldGenNaturalUnderGround;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class GenerateStoneStalactite {
     public Block blockId;
     public GenerateStoneStalactite(){
-    	init(BetterUnderground.blockStoneStalactite);
+    	init(NaturalUnderground.blockStoneStalactite);
     	}
     public GenerateStoneStalactite(Block toGen){
     	init(toGen);
@@ -43,7 +43,7 @@ public class GenerateStoneStalactite {
 				j++;
 			}
 			// stalagmite base
-			if (!world.getBlockState(botY).getMaterial().isLiquid() && WorldGenBetterUnderGround.isWhiteListed(world.getBlockState(botY.down()).getBlock())) {
+			if (!world.getBlockState(botY).getMaterial().isLiquid() && WorldGenNaturalUnderGround.isWhiteListed(world.getBlockState(botY.down()).getBlock())) {
 				aux = Utils.randomChoise(-1, 8, 9, 10);
 				if (aux != -1) {
 					j++;

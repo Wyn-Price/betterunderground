@@ -1,4 +1,4 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.ArrayList;
 
@@ -19,15 +19,15 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
 
 public class ClientProxy extends ServerProxy{
-    private static final String PREFIX = "betterunderground";
+    private static final String PREFIX = "naturalunderground";
     @Override
     public void registerModelBakery() {
-    	mb(BetterUnderground.blockStoneStalactite, BetterUnderground.stalacs, "stone_");
-    	mb(BetterUnderground.blockSandStalactite, BetterUnderground.sandStalacs, "sandstone_");
-    	mb(BetterUnderground.blockDecorations, BetterUnderground.icicles, "icicle_");
-   		mb(BetterUnderground.blockFlora, BetterUnderground.caps, "flora_");
-   		mb(BetterUnderground.blockFossils, BetterUnderground.fossils, "fossil_");
-   		mb(BetterUnderground.mossyDirt, BetterUnderground.mossy, "mossy_");
+    	mb(NaturalUnderground.blockStoneStalactite, NaturalUnderground.stalacs, "stone_");
+    	mb(NaturalUnderground.blockSandStalactite, NaturalUnderground.sandStalacs, "sandstone_");
+    	mb(NaturalUnderground.blockDecorations, NaturalUnderground.icicles, "icicle_");
+   		mb(NaturalUnderground.blockFlora, NaturalUnderground.caps, "flora_");
+   		mb(NaturalUnderground.blockFossils, NaturalUnderground.fossils, "fossil_");
+   		mb(NaturalUnderground.mossyDirt, NaturalUnderground.mossy, "mossy_");
     }
 
 	private void mb(Block block, ArrayList<String> size, String Suffix)
@@ -40,7 +40,7 @@ public class ClientProxy extends ServerProxy{
         	
         ResourceLocation[] names = new ResourceLocation[ArrayNames.size()];
         names = ArrayNames.toArray(names);
-    	ModelBakery.registerItemVariants(Item.getItemFromBlock(BetterUnderground.blockStoneStalactite), names);
+    	ModelBakery.registerItemVariants(Item.getItemFromBlock(NaturalUnderground.blockStoneStalactite), names);
     	
 	}
 	
@@ -56,12 +56,12 @@ public class ClientProxy extends ServerProxy{
     
 	   @Override
 	public void registerRenders() {
-		   regItemMesher(BetterUnderground.blockStoneStalactite, BetterUnderground.stalacs, "stone_");
-	   		regItemMesher(BetterUnderground.blockSandStalactite, BetterUnderground.sandStalacs, "sandstone_");
-	   		regItemMesher(BetterUnderground.blockDecorations, BetterUnderground.icicles, "icicle_");
-	   		regItemMesher(BetterUnderground.blockFlora, BetterUnderground.caps, "flora_");
-	   		regItemMesher(BetterUnderground.blockFossils, BetterUnderground.fossils, "fossil_");
-	   		regItemMesher(BetterUnderground.mossyDirt, BetterUnderground.mossy, "mossy_");
+		   regItemMesher(NaturalUnderground.blockStoneStalactite, NaturalUnderground.stalacs, "stone_");
+	   		regItemMesher(NaturalUnderground.blockSandStalactite, NaturalUnderground.sandStalacs, "sandstone_");
+	   		regItemMesher(NaturalUnderground.blockDecorations, NaturalUnderground.icicles, "icicle_");
+	   		regItemMesher(NaturalUnderground.blockFlora, NaturalUnderground.caps, "flora_");
+	   		regItemMesher(NaturalUnderground.blockFossils, NaturalUnderground.fossils, "fossil_");
+	   		regItemMesher(NaturalUnderground.mossyDirt, NaturalUnderground.mossy, "mossy_");
 	}
       
 	  @Override
@@ -70,12 +70,12 @@ public class ClientProxy extends ServerProxy{
             @Override
             public int colorMultiplier(IBlockState iBlockState, IBlockAccess iBlockAccess, BlockPos blockPos, int i) {
                 if(iBlockState != null){
-                    if(BetterUnderground.blockFlora.getMetaFromState(iBlockState) < 6)
+                    if(NaturalUnderground.blockFlora.getMetaFromState(iBlockState) < 6)
                         return iBlockAccess != null ? BiomeColorHelper.getFoliageColorAtPos(iBlockAccess, blockPos) : ColorizerFoliage.getFoliageColorBasic();
                 }
                 return -1;
             }
-        }, BetterUnderground.blockFlora);
+        }, NaturalUnderground.blockFlora);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
             @Override
             public int colorMultiplier(ItemStack itemStack, int i) {
@@ -83,7 +83,7 @@ public class ClientProxy extends ServerProxy{
                     return ColorizerFoliage.getFoliageColorBasic();
                 return -1;
             }
-        }, BetterUnderground.blockFlora);
+        }, NaturalUnderground.blockFlora);
     	ModBlocks.invtab();
     }
 }

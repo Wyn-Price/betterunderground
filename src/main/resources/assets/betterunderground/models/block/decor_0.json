@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures":{
-    "cross": "betterunderground:blocks/decorations0"
+    "cross": "naturalunderground:blocks/decorations0"
   }
 }

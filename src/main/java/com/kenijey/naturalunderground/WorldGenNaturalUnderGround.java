@@ -1,14 +1,14 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.wynprice.betterunderground.generation.biomeGen.GenerationArid;
-import com.wynprice.betterunderground.generation.biomeGen.GenerationFrozen;
-import com.wynprice.betterunderground.generation.biomeGen.GenerationHumid;
-import com.wynprice.betterunderground.generation.biomeGen.GenerationJungle;
-import com.wynprice.betterunderground.generation.biomeGen.GenerationNormal;
+import com.kenijey.naturalunderground.generation.biomeGen.GenerationArid;
+import com.kenijey.naturalunderground.generation.biomeGen.GenerationFrozen;
+import com.kenijey.naturalunderground.generation.biomeGen.GenerationHumid;
+import com.kenijey.naturalunderground.generation.biomeGen.GenerationJungle;
+import com.kenijey.naturalunderground.generation.biomeGen.GenerationNormal;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -21,7 +21,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public final class WorldGenBetterUnderGround {
+public final class WorldGenNaturalUnderGround {
 	public static float probabilityVinesJungle;
 	public static float probabilityVines;
 	public static float probabilityIcicle;
@@ -46,7 +46,7 @@ public final class WorldGenBetterUnderGround {
 	private static final GenerationNormal normalGen = new GenerationNormal();
 	private static final GenerationFrozen frozenGen = new GenerationFrozen();
 
-	public WorldGenBetterUnderGround(Configuration config) {
+	public WorldGenNaturalUnderGround(Configuration config) {
 		setConfig(config);
 	}
 

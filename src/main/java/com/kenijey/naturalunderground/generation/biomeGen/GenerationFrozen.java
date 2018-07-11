@@ -1,11 +1,11 @@
-package com.wynprice.betterunderground.generation.biomeGen;
+package com.kenijey.naturalunderground.generation.biomeGen;
 
 import java.util.Random;
 
-import com.wynprice.betterunderground.Utils;
-import com.wynprice.betterunderground.WorldGenBetterUnderGround;
-import com.wynprice.betterunderground.generation.structureGen.DecorationHelper;
-import com.wynprice.betterunderground.generation.structureGen.GenerateStoneStalactite;
+import com.kenijey.naturalunderground.Utils;
+import com.kenijey.naturalunderground.WorldGenNaturalUnderGround;
+import com.kenijey.naturalunderground.generation.structureGen.DecorationHelper;
+import com.kenijey.naturalunderground.generation.structureGen.GenerateStoneStalactite;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -18,8 +18,8 @@ public final class GenerationFrozen extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random random, BlockPos pos) {
-		switch (Utils.weightedChoise(WorldGenBetterUnderGround.probabilityIceshrooms, WorldGenBetterUnderGround.probabilitySpiderWeb, WorldGenBetterUnderGround.probabilityIcicle, WorldGenBetterUnderGround.probabilitySkulls,
-				WorldGenBetterUnderGround.probabilityStalactite, 0)) {
+		switch (Utils.weightedChoise(WorldGenNaturalUnderGround.probabilityIceshrooms, WorldGenNaturalUnderGround.probabilitySpiderWeb, WorldGenNaturalUnderGround.probabilityIcicle, WorldGenNaturalUnderGround.probabilitySkulls,
+				WorldGenNaturalUnderGround.probabilityStalactite, 0)) {
 		case 1:
 			DecorationHelper.generateIceshrooms(world, random, pos);
             return true;
@@ -33,7 +33,7 @@ public final class GenerationFrozen extends WorldGenerator {
 			DecorationHelper.generateSkulls(world, random, pos, Utils.getNumEmptyBlocks(world, pos));
             return true;
 		default:
-			new GenerateStoneStalactite().generate(world, random, pos, Utils.getNumEmptyBlocks(world, pos), WorldGenBetterUnderGround.maxLength);
+			new GenerateStoneStalactite().generate(world, random, pos, Utils.getNumEmptyBlocks(world, pos), WorldGenNaturalUnderGround.maxLength);
             return true;
 		}
 	}

@@ -1,11 +1,11 @@
-package com.wynprice.betterunderground.generation.biomeGen;
+package com.kenijey.naturalunderground.generation.biomeGen;
 
 import java.util.Random;
 
-import com.wynprice.betterunderground.Utils;
-import com.wynprice.betterunderground.WorldGenBetterUnderGround;
-import com.wynprice.betterunderground.generation.structureGen.DecorationHelper;
-import com.wynprice.betterunderground.generation.structureGen.GenerateStoneStalactite;
+import com.kenijey.naturalunderground.Utils;
+import com.kenijey.naturalunderground.WorldGenNaturalUnderGround;
+import com.kenijey.naturalunderground.generation.structureGen.DecorationHelper;
+import com.kenijey.naturalunderground.generation.structureGen.GenerateStoneStalactite;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -18,8 +18,8 @@ public final class GenerationHumid extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random random, BlockPos pos) {
-		switch (Utils.weightedChoise(WorldGenBetterUnderGround.probabilityGlowcapsHumid, WorldGenBetterUnderGround.probabilityWet, WorldGenBetterUnderGround.probabilityVines, WorldGenBetterUnderGround.probabilitySpiderWeb,
-				WorldGenBetterUnderGround.probabilitySkulls, WorldGenBetterUnderGround.probabilityStalactite)) {
+		switch (Utils.weightedChoise(WorldGenNaturalUnderGround.probabilityGlowcapsHumid, WorldGenNaturalUnderGround.probabilityWet, WorldGenNaturalUnderGround.probabilityVines, WorldGenNaturalUnderGround.probabilitySpiderWeb,
+				WorldGenNaturalUnderGround.probabilitySkulls, WorldGenNaturalUnderGround.probabilityStalactite)) {
 		case 1:
 			DecorationHelper.generateGlowcaps(world, random, pos);
 			return true;
@@ -36,7 +36,7 @@ public final class GenerationHumid extends WorldGenerator {
 			DecorationHelper.generateSkulls(world, random, pos, Utils.getNumEmptyBlocks(world, pos));
             return true;
 		default:
-            new GenerateStoneStalactite().generate(world, random, pos, Utils.getNumEmptyBlocks(world, pos), WorldGenBetterUnderGround.maxLength);
+            new GenerateStoneStalactite().generate(world, random, pos, Utils.getNumEmptyBlocks(world, pos), WorldGenNaturalUnderGround.maxLength);
             return true;
 		}
 	}

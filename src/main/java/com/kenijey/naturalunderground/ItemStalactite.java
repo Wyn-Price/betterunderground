@@ -1,4 +1,4 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class ItemStalactite extends MultiItemBlock {
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
 			EnumFacing facing, float hitX, float hitY, float hitZ) {
-		return itemUse(new ItemStack(BetterUnderground.blockStoneStalactite), player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+		return itemUse(new ItemStack(NaturalUnderground.blockStoneStalactite), player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 
 	public EnumActionResult itemUse(ItemStack itemStack, EntityPlayer par2EntityPlayer, World world, BlockPos pos, EnumHand hand, EnumFacing side, float par8, float par9, float par10) {
@@ -65,6 +65,6 @@ public class ItemStalactite extends MultiItemBlock {
 	}
 
 	private boolean isStalactite(IBlockState state){
-		return state.getBlock() == BetterUnderground.blockStoneStalactite || state.getBlock() == BetterUnderground.blockSandStalactite;
+		return state.getBlock() == NaturalUnderground.blockStoneStalactite || state.getBlock() == NaturalUnderground.blockSandStalactite;
 	}
 }

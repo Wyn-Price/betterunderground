@@ -1,4 +1,4 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -43,7 +43,7 @@ public class BlockFlora extends BlockBush implements IShearable {
 	}
 
 	public int getNumOfStructures(){
-		return BetterUnderground.caps.size();
+		return NaturalUnderground.caps.size();
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class BlockFlora extends BlockBush implements IShearable {
 
 	@Override
 	public Item getItemDropped(IBlockState par1, Random par2Random, int par3) {
-		if (BetterUnderground.shallDropGlowstone)
+		if (NaturalUnderground.shallDropGlowstone)
 		return Items.GLOWSTONE_DUST;
 		else return null;
 	}

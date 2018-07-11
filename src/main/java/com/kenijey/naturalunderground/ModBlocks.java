@@ -1,4 +1,4 @@
-package com.wynprice.betterunderground;
+package com.kenijey.naturalunderground;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,12 +31,12 @@ public class ModBlocks
 		regBlock(md, 64);
 		regBlock(SS, 64);
 		regBlock(SaS, 64);
-		BetterUnderground.blockFlora = f;
-		BetterUnderground.blockDecorations = d;
-		BetterUnderground.blockFossils = F;
-		BetterUnderground.mossyDirt = md;
-		BetterUnderground.blockStoneStalactite = SS;
-		BetterUnderground.blockSandStalactite = SaS;
+		NaturalUnderground.blockFlora = f;
+		NaturalUnderground.blockDecorations = d;
+		NaturalUnderground.blockFossils = F;
+		NaturalUnderground.mossyDirt = md;
+		NaturalUnderground.blockStoneStalactite = SS;
+		NaturalUnderground.blockSandStalactite = SaS;
 	}
 	
 	private static void regBlock(Block block, int StackSize)
@@ -46,22 +46,22 @@ public class ModBlocks
 		MultiItemBlock item = null;
 		switch (classEs.get(classEs.size() - 1)) {
 		case "BlockFlora":
-			item = new MultiItemBlock(block, getn("flora_", BetterUnderground.caps.size()));
+			item = new MultiItemBlock(block, getn("flora_", NaturalUnderground.caps.size()));
 			break;
 		case "BlockDecorations":
-			item = new MultiItemBlock(block, getn("icicle_", BetterUnderground.icicles.size()));
+			item = new MultiItemBlock(block, getn("icicle_", NaturalUnderground.icicles.size()));
 			break;
 		case "BlockFossils":
-			item = new MultiItemBlock(block, getn("fossil_", BetterUnderground.fossils.size()));
+			item = new MultiItemBlock(block, getn("fossil_", NaturalUnderground.fossils.size()));
 			break;
 		case "BlockMossyDirt":
-			item = new MultiItemBlock(block, getn(null, BetterUnderground.mossy.size()));
+			item = new MultiItemBlock(block, getn(null, NaturalUnderground.mossy.size()));
 			break;
 		case "BlockStoneStalactite":
-			item = new MultiItemBlock(block, getn("stone_", BetterUnderground.stalacs.size()));
+			item = new MultiItemBlock(block, getn("stone_", NaturalUnderground.stalacs.size()));
 			break;
 		case "BlockStalactite":
-			item = new MultiItemBlock(block, getn("sandstone_", BetterUnderground.sandStalacs.size()));
+			item = new MultiItemBlock(block, getn("sandstone_", NaturalUnderground.sandStalacs.size()));
 			break;
 		}
 		//ItemBlock item = new ItemBlock(block);
@@ -82,7 +82,7 @@ public class ModBlocks
 	{
 		for(Block b : Arrays.asList(f,d,F,md,SS,SaS))
 		{
-			b.setCreativeTab(BetterUnderground.tab);
+			b.setCreativeTab(NaturalUnderground.tab);
 		}
 			
 	}

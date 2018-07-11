@@ -1,18 +1,18 @@
 [
-{
-  "modid": "betterunderground",
-  "name": "Better Underground",
-  "description": "",
-  "mcversion": 1.12.2,
-  "version" : 1.1.7,
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["Wyn Price","kenijey"],
-  "logoFile": "assets/betterunderground/logo/logo.png",
-  "screenshots": [],
-  "parent":"",
-  "dependencies": [
-	"MinecraftForge"
-  ]
-}
+	{
+	"modid": "naturalunderground",
+	"name": "Natural Underground",
+	"description": "",
+	"mcversion": 1.12.2,
+	"version" : 1.1.7,
+	"url": "",
+	"updateUrl": "",
+	"authorList": ["Wyn Price","kenijey"],
+	"logoFile": "assets/naturalunderground/logo/logo.png",
+	"screenshots": [],
+	"parent":"",
+	"dependencies": [
+		"MinecraftForge"
+		]
+	}
 ]
